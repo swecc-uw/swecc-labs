@@ -4,12 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SWECC Labs - Grow Your Software Engineering Skills</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- favicon -->
+     <link rel="icon" href="assets/sweccLOGO.png" type="image/x-icon">
     <style>
         :root {
-            --primary: #2563eb;
-            --secondary: #1e40af;
+            --primary: #005d32;
+            --secondary: #02471e;
             --text: #1f2937;
-            --light-bg: #f3f4f6;
+            --light-bg: #e7e7e7;
+            --gradient: linear-gradient(120deg, #005d32, #02471e);
         }
 
         * {
@@ -22,6 +26,7 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             line-height: 1.6;
             color: var(--text);
+            overflow-x: hidden;
         }
 
         .container {
@@ -31,109 +36,273 @@
         }
 
         header {
-            background: var(--primary);
-            color: white;
-            padding: 4rem 0;
+            background: var(--gradient);
+            color: rgba(255, 255, 255, 0.95);
+            padding: 6rem 0;
+            position: relative;
+            overflow: hidden;
         }
 
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(0, 93, 50, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(2, 71, 30, 0.4) 0%, transparent 50%);
+            animation: pulseBackground 15s ease-in-out infinite;
+        }
+
+        @keyframes pulseBackground {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 0.3; }
         }
 
         .hero-content {
             max-width: 800px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #ffffff, #e0e0e0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: slideIn 0.8s ease-out;
         }
 
         .hero-content p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
+            font-size: 1.4rem;
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out 0.3s forwards;
         }
 
         .features {
-            padding: 4rem 0;
+            padding: 6rem 0;
             background: var(--light-bg);
+            position: relative;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--primary);
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
         }
 
         .feature-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background: rgb(255, 255, 255);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transform: translateY(0);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--gradient);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleY(1);
         }
 
         .feature-card h3 {
             color: var(--primary);
             margin-bottom: 1rem;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .getting-started {
-            padding: 4rem 0;
+            padding: 6rem 0;
+            background: #fff;
+        }
+
+        .getting-started h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--primary);
         }
 
         .steps {
             counter-reset: step;
             margin-top: 2rem;
+            position: relative;
         }
 
         .step {
             display: flex;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
             position: relative;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.5s ease;
+        }
+
+        .step.visible {
+            opacity: 1;
+            transform: translateX(0);
         }
 
         .step::before {
             counter-increment: step;
             content: counter(step);
-            background: var(--primary);
+            background: var(--gradient);
             color: white;
-            width: 30px;
-            height: 30px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 1rem;
+            margin-right: 1.5rem;
             flex-shrink: 0;
+            font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
-        .expectations {
-            padding: 4rem 0;
-            background: var(--light-bg);
+        .step-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            flex-grow: 1;
+            transition: transform 0.3s ease;
+        }
+
+        .step-content:hover {
+            transform: translateX(10px);
         }
 
         .btn {
             display: inline-block;
-            background: var(--primary);
+            background: var(--gradient);
             color: white;
-            padding: 0.8rem 1.5rem;
-            border-radius: 4px;
+            padding: 1rem 2rem;
+            border-radius: 8px;
             text-decoration: none;
-            transition: background-color 0.3s;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(0, 93, 50, 0.3);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
         }
 
         .btn:hover {
-            background: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 93, 50, 0.4);
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(-30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .expectations {
+            padding: 6rem 0;
+            background: var(--light-bg);
+        }
+
+        .expectations h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--primary);
+        }
+
+        .expectations ul {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .expectations li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .expectations li::before {
+            content: '→';
+            color: var(--primary);
+            font-weight: bold;
         }
 
         @media (max-width: 768px) {
             header {
-                padding: 2rem 0;
+                padding: 4rem 0;
             }
 
             header h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
 
             .features-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .step::before {
+                width: 30px;
+                height: 30px;
             }
         }
     </style>
@@ -144,7 +313,7 @@
             <div class="hero-content">
                 <h1>SWECC Labs</h1>
                 <p>Build your software engineering career through guided open-source contributions and mentorship.</p>
-                <a href="#" class="btn">Join Now</a>
+                <a href="#" class="btn">Join Now <i class="fas fa-arrow-right" style="margin-left: 8px;"></i></a>
             </div>
         </div>
     </header>
@@ -154,19 +323,19 @@
             <h2>Why Join SWECC Labs?</h2>
             <div class="features-grid">
                 <div class="feature-card">
-                    <h3>Mentorship</h3>
+                    <h3><i class="fas fa-users"></i> Mentorship</h3>
                     <p>Learn from engineers who can guide your technical growth and development.</p>
                 </div>
                 <div class="feature-card">
-                    <h3>Guided Best Practices</h3>
+                    <h3><i class="fas fa-code"></i> Guided Best Practices</h3>
                     <p>Build strong technical foundations from day one, even as a beginner.</p>
                 </div>
                 <div class="feature-card">
-                    <h3>Immediate Impact</h3>
+                    <h3><i class="fas fa-rocket"></i> Immediate Impact</h3>
                     <p>Start making meaningful contributions quickly. Days not months.</p>
                 </div>
                 <div class="feature-card">
-                    <h3>Public Contributions</h3>
+                    <h3><i class="fas fa-certificate"></i> Public Contributions</h3>
                     <p>Showcase your work through public contributions that demonstrate your skills.</p>
                 </div>
             </div>
@@ -216,7 +385,7 @@
             <h2>What to Expect</h2>
             <div class="features-grid">
                 <div class="feature-card">
-                    <h3>From the Program</h3>
+                    <h3><i class="fas fa-check-circle"></i> From the Program</h3>
                     <ul>
                         <li>Flexible: Contribute at your own pace</li>
                         <li>Supportive: Access mentorship and resources</li>
@@ -224,7 +393,7 @@
                     </ul>
                 </div>
                 <div class="feature-card">
-                    <h3>From You</h3>
+                    <h3><i class="fas fa-user-check"></i> From You</h3>
                     <ul>
                         <li>Self-Driven: Take initiative in learning</li>
                         <li>Collaborative: Engage with mentors and fellows</li>
@@ -236,13 +405,32 @@
     </section>
 
     <script>
-        // Add smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'
                 });
+            });
+        });
+
+        const steps = document.querySelectorAll('.step');
+        const stepObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.3 });
+
+        steps.forEach(step => stepObserver.observe(step));
+
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
             });
         });
     </script>
