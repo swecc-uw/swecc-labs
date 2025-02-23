@@ -13,7 +13,7 @@ Traditional personal projects can be challenging to start and may not provide th
 
 ## Getting Started
 
-1. **Join Us**: Fill out our [New Contributor Form](<link>) to receive:
+1. **Join Us**: Fill out our [New Contributor Form](https://forms.gle/T52aUc2faP71jNCWA) to receive:
    - GitHub organization invitation
    - `new-contributor` Discord role
    - Welcome email with program details
