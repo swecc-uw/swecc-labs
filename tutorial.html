@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git Tutorial - SWECC Labs</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="icon" href="assets/sweccLOGO.png" type="image/x-icon">
+    <style>
+        /* Import main site variables */
+        :root {
+            --primary: #00924e;
+            --secondary: #023c19;
+            --text: #1f2937;
+            --light-bg: #e7e7e7;
+            --gradient: linear-gradient(120deg, #005d32, #02471e);
+            scroll-behavior: smooth;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .tutorial-header {
+            background: var(--gradient);
+            color: white;
+            padding: 4rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .tutorial-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tutorial-nav {
+            background: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+
+        .tutorial-nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+        }
+
+        .tutorial-nav a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        .tutorial-nav a:hover::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--primary);
+        }
+
+        .tutorial-section {
+            margin: 4rem 0;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .tutorial-section h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        .tutorial-section h3 {
+            color: var(--secondary);
+            margin: 2rem 0 1rem;
+            font-size: 1.5rem;
+        }
+
+        .step {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--light-bg);
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .step h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .screenshot {
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: #f8f8f8;
+            border: 1px dashed #ccc;
+            border-radius: 8px;
+            text-align: center;
+            color: #666;
+        }
+
+        .code-block {
+            background: #1e1e1e;
+            color: #fff;
+            padding: 1rem;
+            border-radius: 6px;
+            margin: 1rem 0;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .tip {
+            background: rgba(0, 146, 78, 0.1);
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .tip i {
+            color: var(--primary);
+            margin-right: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .tutorial-header {
+                padding: 3rem 0;
+            }
+
+            .tutorial-header h1 {
+                font-size: 2rem;
+            }
+
+            .tutorial-section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="tutorial-header">
+        <div class="container">
+            <h1>Git & GitHub Tutorial</h1>
+            <p>Learn how to contribute to SWECC Labs projects step by step</p>
+        </div>
+    </div>
+
+    <nav class="tutorial-nav">
+        <div class="container">
+            <ul>
+                <li><a href="#prerequisites">Prerequisites</a></li>
+                <li><a href="#forking">Forking</a></li>
+                <li><a href="#cloning">Cloning</a></li>
+                <li><a href="#making-changes">Making Changes</a></li>
+                <li><a href="#creating-pr">Creating PR</a></li>
+                <li><a href="#appendix">Git Reference</a></li>
+                <li><a href="#improve">Improve Guide</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section id="prerequisites" class="tutorial-section">
+            <h2>Prerequisites</h2>
+            <div class="step">
+                <h4><i class="fas fa-check-circle"></i> Install Git</h4>
+                <p>First, you'll need to install Git on your computer:</p>
+                <ul>
+                    <li>Windows: Download from <a href="https://git-scm.com/download/win">git-scm.com</a></li>
+                    <li>Mac: it's probably already installed</li>
+                    <li>Linux: you probably know what to do</li>
+                </ul>
+            </div>
+
+            <div class="step">
+                <h4><i class="fas fa-check-circle"></i> Create a GitHub Account</h4>
+                <p>If you haven't already, create a free account at <a href="https://github.com">GitHub.com</a></p>
+                <div class="screenshot">
+                    <img src="assets/tutorial/github-signup.png" alt="GitHub signup page"
+                        style="width: 100%; height: auto;">
+                </div>
+            </div>
+        </section>
+
+        <section id="forking" class="tutorial-section">
+            <h2>Forking the Repository</h2>
+            <div class="step">
+                <h4><i class="fas fa-code-branch"></i> Fork the Repository</h4>
+                <p>
+                    Navigate to the SWECC Labs repository you want to contribute to and click the "Fork" button in the
+                    top right. For example, for your first contribution, you should fork the <a
+                        href="https://github.com/swecc-uw/swecc-labs">swecc-labs</a> repository.
+                </p>
+                <div class="screenshot">
+                    <img src="assets/tutorial/github-fork.png" alt="GitHub fork button location"
+                        style="width: 100%; height: auto;">
+                </div>
+            </div>
+
+            <div class="tip">
+                <i class="fas fa-lightbulb"></i>
+                <strong>Tip:</strong> A fork creates your own copy of the repository where you can make changes safely.
+            </div>
+        </section>
+
+        <section id="cloning" class="tutorial-section">
+            <h2>Cloning Your Fork</h2>
+            <div class="step">
+                <h4><i class="fas fa-download"></i> Clone the Repository</h4>
+                <p>Copy your fork's URL and clone it to your local machine:</p>
+                <div class="screenshot">
+                    <img src="assets/tutorial/github-clone.png" alt="GitHub clone button and URL"
+                        style="width: 100%; height: auto;">
+                </div>
+                <div class="code-block">
+                    <code>git clone https://github.com/your-username/repository-name.git</code>
+                </div>
+            </div>
+
+            <div class="step">
+                <h4><i class="fas fa-link"></i> Add Upstream Remote</h4>
+                <p>Link your fork to the original repository:</p>
+                <div class="code-block">
+                    <code>git remote add upstream https://github.com/swecc-uw/repository-name.git</code>
+                </div>
+            </div>
+        </section>
+
+        <section id="making-changes" class="tutorial-section">
+            <h2>Making Changes</h2>
+            <div class="step">
+                <h4><i class="fas fa-code"></i> Create a Branch</h4>
+                <p>Create a new branch for your changes:</p>
+                <div class="code-block">
+                    <code>git checkout -b branch-name</code>
+                </div>
+            </div>
+
+            <div class="step">
+                <h4><i class="fas fa-save"></i> Commit Your Changes</h4>
+                <p>After making your changes, commit them:</p>
+                <div class="code-block">
+                    <code>
+                        git add .<br>
+                        git commit -m "Description of your changes"<br>
+                        git push origin branch-name
+                    </code>
+                </div>
+            </div>
+
+            <div class="tip">
+                <i class="fas fa-lightbulb"></i>
+                <strong>Tip:</strong> Write clear, descriptive commit messages that explain what your changes do.
+            </div>
+        </section>
+
+        <section id="creating-pr" class="tutorial-section">
+            <h2>Creating a Pull Request</h2>
+            <div class="step">
+                <h4><i class="fas fa-code-pull-request"></i> Open a Pull Request</h4>
+                <p>Go to your fork on GitHub and click "Pull Request"</p>
+                <div class="screenshot">
+                    <img src="assets/tutorial/github-pr.png" alt="GitHub PR creation page"
+                        style="width: 100%; height: auto;">
+                </div>
+            </div>
+
+            <div class="tip">
+                <i class="fas fa-lightbulb"></i>
+                <strong>Tip:</strong> Keep your PR focused on a single change. This makes it easier to review and more
+                likely to be merged quickly.
+            </div>
+        </section>
+
+        <section id="appendix" class="tutorial-section">
+            <h2>Git CLI Reference</h2>
+            <div class="step">
+                <h4><i class="fas fa-terminal"></i> Common Git Workflows</h4>
+                <table style="width: 100%; border-collapse: collapse; margin: 1.5rem 0;">
+                    <thead>
+                        <tr style="background: var(--gradient); color: white;">
+                            <th style="padding: 1rem; text-align: left; border-radius: 8px 0 0 0;">I want to...</th>
+                            <th style="padding: 1rem; text-align: left; border-radius: 0 8px 0 0;">Commands to use</th>
+                        </tr>
+                    </thead>
+                    <tbody style="background: #f8f8f8; color: #333; font-family: 'Courier New', monospace;">
+                        <tr style="border-bottom: 1px solid #e0e0e0;">
+                            <td style="padding: 1rem; color: var(--text);">Start working on a new feature</td>
+                            <td style="padding: 1rem; background: #f0f0f0;">
+                                git fetch upstream<br>
+                                git checkout upstream/main<br>
+                                git checkout -b feature-name
+                            </td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #e0e0e0;">
+                            <td style="padding: 1rem; color: var(--text);">Save my work in progress</td>
+                            <td style="padding: 1rem; background: #f0f0f0;">
+                                git add .<br>
+                                git commit -m "WIP: description of changes"
+                            </td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #e0e0e0;">
+                            <td style="padding: 1rem; color: var(--text);">Update my fork with latest changes</td>
+                            <td style="padding: 1rem; background: #f0f0f0;">
+                                git fetch upstream<br>
+                                git checkout main<br>
+                                git merge upstream/main<br>
+                                git push origin main
+                            </td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #e0e0e0;">
+                            <td style="padding: 1rem; color: var(--text);">Undo my last commit (but keep changes)</td>
+                            <td style="padding: 1rem; background: #f0f0f0;">git reset HEAD~1</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #e0e0e0;">
+                            <td style="padding: 1rem; color: var(--text);">Discard all my uncommitted changes</td>
+                            <td style="padding: 1rem; background: #f0f0f0;">git reset --hard HEAD</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #e0e0e0;">
+                            <td style="padding: 1rem; color: var(--text);">Switch to a different branch without losing changes</td>
+                            <td style="padding: 1rem; background: #f0f0f0;">
+                                git stash<br>
+                                git checkout other-branch<br>
+                                git stash pop # to get changes back
+                            </td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #e0e0e0;">
+                            <td style="padding: 1rem; color: var(--text);">Fix conflicts with main branch</td>
+                            <td style="padding: 1rem; background: #f0f0f0;">
+                                git fetch upstream<br>
+                                git merge upstream/main<br>
+                                # Fix conflicts in editor<br>
+                                git add .<br>
+                                git commit -m "Merge main and resolve conflicts"
+                            </td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #e0e0e0;">
+                            <td style="padding: 1rem; color: var(--text);">See what changes I've made</td>
+                            <td style="padding: 1rem; background: #f0f0f0;">
+                                git status # files changed<br>
+                                git diff # actual changes
+                            </td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #e0e0e0;">
+                            <td style="padding: 1rem; color: var(--text);">Push changes for PR</td>
+                            <td style="padding: 1rem; background: #f0f0f0; border-radius: 0 0 8px 0;">
+                                git push origin branch-name<br>
+                                # Then create PR on GitHub
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="tip">
+                <i class="fas fa-lightbulb"></i>
+                <strong>Tip:</strong> These commands are for common workflows you'll encounter. If you need to do something not listed here, try searching the operation on GitHub's <a href="https://docs.github.com/en/get-started/using-git/about-git" style="color: var(--primary);">Git documentation</a>.
+            </div>
+        </section>
+
+        <section id="improve" class="tutorial-section">
+            <h2>Help Improve This Guide</h2>
+            <div class="step">
+                <h4><i class="fas fa-edit"></i> Contribute to Documentation</h4>
+                <p>
+                    This guide is open source and we welcome improvements! If you find something unclear, spot a mistake,
+                    or have ideas for better explanations, please contribute. You can:
+                </p>
+                <ul style="margin-top: 1rem; margin-left: 1.5rem;">
+                    <li>Add missing information</li>
+                    <li>Clarify confusing sections</li>
+                    <li>Fix typos or errors</li>
+                    <li>Improve the layout or design</li>
+                    <li>Add more helpful tips</li>
+                </ul>
+                <p style="margin-top: 1rem;">
+                    Just fork the repository, make your changes, and submit a pull request. It's a great way to make your first contribution!
+                </p>
+            </div>
+        </section>
+
+        <div style="margin: 4rem 0;">
+            <a href="/index.html" class="btn" style="display: inline-flex; align-items: center;">
+                <i class="fas fa-arrow-left" style="margin-right: 8px;"></i>
+                Back to Home
+            </a>
+        </div>
+    </main>
+</body>
+
+</html>

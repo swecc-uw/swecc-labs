@@ -18,7 +18,18 @@ Traditional personal projects can be challenging to start and may not provide th
    - `new-contributor` Discord role
    - Welcome email with program details
 
-2. **First Contribution**: Get started by submitting a PR to add your name to [CONTRIBUTORS.txt](CONTRIBUTORS.txt)
+2. **First Contribution**: Get started by submitting a PR to add yourself as a contributor to the site.
+   - Add yourself to the `data/contributors.json` file
+   ```json
+   {
+       "name": "Your Name",
+       "github": "your-github-username",
+       "photo": "path-to-your-photo"
+   }
+   ```
+   - Add your photo to the `assets/img` folder and update the `data/contributors.json` file with the path to your photo
+   - Add your name to the `CONTRIBUTORS.txt` file
+   - Submit the PR and wait for it to be approved. As we approve PRs, we will also reach out to you on Discord.
 
 3. **Find Your Project**: Once approved as a contributor:
    - Browse open issues
