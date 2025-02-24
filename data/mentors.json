@@ -2,7 +2,19 @@
     {
         "name": "Elijah Melton",
         "github": "elimelt",
-        "photo": "/assets/img/elijah.jpg",
+        "photo": "/assets/img/elijah.jpeg",
         "apptUrl": "https://calendar.app.google/oNfMygJbMbT1ft3t8"
+    },
+    {
+        "name": "Advay Patil",
+        "github": "Advayp",
+        "photo": "/assets/img/advay.jpeg",
+        "apptUrl": "https://example.com"
+    },
+    {
+        "name": "Benjamin So",
+        "github": "BenjaminSoYH",
+        "photo": "/assets/img/benjamin.jpeg",
+        "apptUrl": "https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3LJEe2f9NKYMZQ_DmpI7f00UpZ8d646yAgAngb8s9r7kDDZvwbp4hrVhcQ0rkdkCnObEfRGhiV"
     }
 ]
