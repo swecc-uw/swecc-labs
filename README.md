@@ -61,3 +61,51 @@ We look for contributors who are:
 - **Self-Driven**: Take initiative in learning and problem-solving while using available resources
 - **Collaborative**: Engage with mentors and fellow contributors through questions and discussion
 - **Reliable**: Maintain clear communication about your progress on assigned issues, and proactively seek help when needed
+
+## Current Projects
+
+### Course Scraper
+
+A tool to scrape a certain website's API *for personal usage*. Users can gather course metadata and prerequisites to be used programmatically elsewhere.
+
+Skills: Python, Automation, APIs, Web Scraping, Selenium
+
+repo: https://github.com/swecc-uw/swecc-course-scraper
+
+### Email Scraper
+
+Email data is readily [available](https://takeout.google.com/), but hard to work with. We are creating a framework for analyzing email data, with the goal in mind of automatically gathering recruiting statistics.
+
+Skills: Python, Data Analysis/Visualization, Parsing, Natural Language Processing
+
+repo: https://github.com/swecc-uw/swecc-email-scraper
+
+### SWECC Labs Landing Page
+
+This very repo accepts contributions! Help make SWECC Labs better by contributing!
+
+Skills: HTML/CSS/JS, technical writing/documentation, Abusing the GitHub API
+
+repo: https://github.com/swecc-uw/swecc-email-scraper
+
+### Suggest a project
+
+Have a great idea for a piece of open source software? Let us know!
+
+#### What makes an idea great?
+- Easy to operate fully open source
+- Self-contained, with minimal external dependencies
+- Does something new and useful
+
+#### Some potential directions
+- Libraries
+- CLI utilities
+- Modules to extend existing frameworks/libraries
+- Implementing novel/niche data structures
+- Creating boilerplate to integrate with sources of data
+- Client-side web applications (localStorage/files only for persistence)
+- Building on top of existing SWECC ecosystem/available data
+
+While we won't have the capacity to facilitate and maintain all projects, we are open to new ideas.
+
+[Suggestion form](https://forms.gle/CFam6g9LNdiY7NuN9)
