@@ -1,0 +1,18 @@
+[
+  {
+    "name": "SWECC Email Scraper",
+    "repo": "https://github.com/swecc-uw/swecc-email-scraper"
+  },
+  {
+    "name": "SWECC Course Scraper",
+    "repo": "https://github.com/swecc-uw/swecc-course-scraper"
+  },
+  {
+    "name": "SWECC Labs Landing Page",
+    "repo": "https://github.com/swecc-uw/swecc-labs"
+  },
+  {
+    "name": "SWECC Website",
+    "repo": "https://github.com/swecc-uw/swecc-website"
+  }
+]
