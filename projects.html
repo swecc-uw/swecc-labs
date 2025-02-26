@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SWECC Labs - Projects</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- favicon -->
+    <link rel="icon" href="assets/sweccLOGO.png" type="image/x-icon">
+    <style>
+        :root {
+            --primary: #00924e;
+            --secondary: #023c19;
+            --text: #1f2937;
+            --light-bg: #e7e7e7;
+            --gradient: linear-gradient(120deg, #005d32, #02471e);
+            scroll-behavior: smooth;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: var(--gradient);
+            color: rgba(255, 255, 255, 0.95);
+            padding: 6rem 0;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        header:after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: white;
+            transform: skewY(-3deg);
+            z-index: 1;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(0, 146, 78, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(2, 60, 25, 0.4) 0%, transparent 50%);
+            animation: pulseBackground 15s ease-in-out infinite;
+        }
+
+        @keyframes pulseBackground {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 0.3; }
+        }
+
+        .hero-content {
+            max-width: 800px;
+            position: relative;
+            z-index: 2;
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #ffffff, #e0e0e0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: slideIn 0.8s ease-out;
+        }
+
+        .hero-content p {
+            font-size: 1.4rem;
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out 0.3s forwards;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            background: var(--gradient);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(0, 93, 50, 0.3);
+            -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 93, 50, 0.4);
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(-30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .projects-section {
+            padding: 6rem 0;
+            background: #fff;
+        }
+
+        .projects-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--primary);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-header {
+            background: var(--gradient);
+            padding: 1.5rem;
+            color: white;
+        }
+
+        .project-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-description {
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .tech-stack {
+            margin-top: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-badge {
+            background: var(--light-bg);
+            color: var(--text);
+            padding: 0.3rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .project-links {
+            margin-top: 1.5rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .project-link:hover {
+            color: var(--secondary);
+            transform: translateX(2px);
+        }
+
+        .suggest-project {
+            margin-top: 4rem;
+            text-align: center;
+            padding: 2rem;
+            background: var(--light-bg);
+            border-radius: 12px;
+        }
+
+        .suggest-project h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .nav-bar {
+            background: var(--gradient);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: white;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+        }
+
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: var(--gradient);
+            z-index: 1001;
+            transition: width 0.1s ease;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--gradient);
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.3s ease;
+            transform: translateY(100px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-progress"></div>
+
+    <nav class="nav-bar">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-logo">
+                <i class="fas fa-code-branch"></i> SWECC Labs
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="projects.html" class="nav-link active">Projects</a>
+                <a href="https://forms.gle/T52aUc2faP71jNCWA" class="nav-link">Join</a>
+            </div>
+        </div>
+    </nav>
+
+    <header>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Our Projects</h1>
+                <p>Explore open-source projects where you can contribute and build your skills.</p>
+                <a href="#projects" class="btn">View Projects <i class="fas fa-arrow-down" style="margin-left: 8px;"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <section id="projects" class="projects-section">
+        <div class="container">
+            <h2>Current Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Course Scraper</h3>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-description">
+                            <p>A tool to scrape a certain website's API <em>for personal usage</em>. Users can gather course metadata and prerequisites to be used programmatically elsewhere.</p>
+                            <div class="tech-stack">
+                                <span class="tech-badge"><i class="fab fa-python"></i> Python</span>
+                                <span class="tech-badge"><i class="fas fa-robot"></i> Automation</span>
+                                <span class="tech-badge"><i class="fas fa-plug"></i> APIs</span>
+                                <span class="tech-badge"><i class="fas fa-spider"></i> Web Scraping</span>
+                                <span class="tech-badge"><i class="fas fa-browser"></i> Selenium</span>
+                            </div>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/swecc-uw/swecc-course-scraper" class="project-link" target="_blank" rel="noopener">
+                                <i class="fab fa-github"></i> View Repository
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Email Scraper</h3>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-description">
+                            <p>Email data is readily <a href="https://takeout.google.com/" target="_blank" rel="noopener">available</a>, but hard to work with. We are creating a framework for analyzing email data, with the goal in mind of automatically gathering recruiting statistics.</p>
+                            <div class="tech-stack">
+                                <span class="tech-badge"><i class="fab fa-python"></i> Python</span>
+                                <span class="tech-badge"><i class="fas fa-chart-bar"></i> Data Analysis</span>
+                                <span class="tech-badge"><i class="fas fa-file-alt"></i> Parsing</span>
+                                <span class="tech-badge"><i class="fas fa-language"></i> NLP</span>
+                            </div>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/swecc-uw/swecc-email-scraper" class="project-link" target="_blank" rel="noopener">
+                                <i class="fab fa-github"></i> View Repository
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>SWECC Labs Landing Page</h3>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-description">
+                            <p>This very repo accepts contributions! Help make SWECC Labs better by contributing to our website and documentation.</p>
+                            <div class="tech-stack">
+                                <span class="tech-badge"><i class="fab fa-html5"></i> HTML</span>
+                                <span class="tech-badge"><i class="fab fa-css3-alt"></i> CSS</span>
+                                <span class="tech-badge"><i class="fab fa-js"></i> JavaScript</span>
+                                <span class="tech-badge"><i class="fas fa-file-code"></i> Documentation</span>
+                                <span class="tech-badge"><i class="fab fa-github"></i> GitHub API</span>
+                            </div>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/swecc-uw/swecc-labs" class="project-link" target="_blank" rel="noopener">
+                                <i class="fab fa-github"></i> View Repository
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="suggest-project">
+                <h3>Have a Project Idea?</h3>
+                <p>We're always looking for new project ideas that can help students build valuable skills.</p>
+                <div class="tech-stack" style="justify-content: center; margin: 1.5rem 0;">
+                    <span class="tech-badge"><i class="fas fa-code"></i> Libraries</span>
+                    <span class="tech-badge"><i class="fas fa-terminal"></i> CLI Tools</span>
+                    <span class="tech-badge"><i class="fas fa-puzzle-piece"></i> Modules</span>
+                    <span class="tech-badge"><i class="fas fa-sitemap"></i> Data Structures</span>
+                    <span class="tech-badge"><i class="fas fa-database"></i> Data Integration</span>
+                    <span class="tech-badge"><i class="fas fa-globe"></i> Web Apps</span>
+                </div>
+                <a href="https://forms.gle/CFam6g9LNdiY7NuN9" class="btn" target="_blank" rel="noopener">
+                    Suggest a Project <i class="fas fa-lightbulb" style="margin-left: 8px;"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <div class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Scroll Progress Indicator
+        window.addEventListener('scroll', () => {
+            const scrollProgress = document.querySelector('.scroll-progress');
+            const scrollPx = document.documentElement.scrollTop;
+            const winHeightPx = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = `${(scrollPx / winHeightPx) * 100}%`;
+            scrollProgress.style.width = scrolled;
+        });
+
+        // Add smooth reveal animations for project cards
+        const cards = document.querySelectorAll('.project-card');
+        const cardObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        cards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            cardObserver.observe(card);
+        });
+
+        // Back to Top Button
+        const backToTop = document.querySelector('.back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
