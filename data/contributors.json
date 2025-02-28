@@ -18,5 +18,10 @@
         "name": "Alvin Zeng",
         "github": "Cabhesi",
         "photo": "/assets/img/alvin.jpg"
+    },
+    {
+        "name": "Aaron Nguyen",
+        "github": "nguyenaaron",
+        "photo": "/assets/img/aaron.jpg"
     }
 ]
