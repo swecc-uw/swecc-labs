@@ -5,8 +5,13 @@
         "photo": "/assets/img/chendur.jpg"
     },
     {
-	"name": "Kevin Nguyen",
-	"github": "kvn147",
-	"photo": "/assets/img/kevin.jpg"
+        "name": "Kevin Nguyen",
+        "github": "kvn147",
+        "photo": "/assets/img/kevin.jpg"
+    },
+    {
+        "name": "Amelia Li",
+        "github": "amelial9",
+        "photo": "/assets/img/amelial.jpg"
     }
 ]
