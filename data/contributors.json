@@ -43,5 +43,10 @@
         "name": "Lucas Ng",
         "github": "nglucas0202",
         "photo": "/assets/img/lucas.jpg"
+    },
+    {
+        "name": "Sean Benoit",
+        "github": "seanbenoit06",
+        "photo": "/assets/img/sean.png"
     }
 ]
