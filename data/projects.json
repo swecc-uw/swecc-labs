@@ -14,5 +14,13 @@
   {
     "name": "SWECC Website",
     "repo": "https://github.com/swecc-uw/swecc-website"
+  },
+  {
+      "name": "SWECC Chronos",
+      "repo": "https://github.com/swecc-uw/swecc-chronos"
+  },
+  {
+      "name": "SWECC Email Sender",
+      "repo": "https://github.com/swecc-uw/swecc-email-sender"
   }
 ]
