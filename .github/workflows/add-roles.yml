@@ -1,0 +1,57 @@
+name: Invite Contributors to Team
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'data/contributors.json'
+
+jobs:
+  invite-to-team:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      
+      - name: Install dependencies
+        run: npm install @octokit/rest
+      
+      - name: Invite contributors to team
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.ADMIN_TOKEN }}
+          script: |
+            const fs = require('fs');
+            const { Octokit } = require('@octokit/rest');
+            
+            const octokit = new Octokit({
+              auth: process.env.GITHUB_TOKEN,
+            });
+            
+            const org = 'swecc-uw';
+            const teamSlug = 'contributors';
+            
+            async function run() {
+              try {
+                const contributorsData = fs.readFileSync('./data/contributors.json', 'utf8');
+                const contributors = JSON.parse(contributorsData);
+                
+                console.log(`Found ${contributors.length} contributors in the JSON file`);
+                
+                const currentMembers = await getAllTeamMembers(org, teamSlug);
+                const currentMemberLogins = currentMembers.map(member => member.login.toLowerCase());
+                
+                console.log(`Current team has ${currentMembers.length} members`);
+              } catch (error) {
+                console.error(error);
+                process.exit(1);
+              }
+            }
+
+            run();
