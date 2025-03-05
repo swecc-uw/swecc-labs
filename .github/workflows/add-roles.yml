@@ -26,30 +26,25 @@ jobs:
           import { Octokit } from '@octokit/rest';
           import fs from 'fs';
 
-          // Initialize Octokit with the admin token
           const octokit = new Octokit({
             auth: process.env.GITHUB_TOKEN,
           });
 
-          // Organization and team details
           const org = 'swecc-uw';
           const teamSlug = 'contributors';
 
           async function run() {
             try {
-              // Read contributors from the JSON file
               const contributorsData = fs.readFileSync('./data/contributors.json', 'utf8');
               const contributors = JSON.parse(contributorsData);
 
               console.log(`Found ${contributors.length} contributors in the JSON file`);
 
-              // Get current team members
               const currentMembers = await getAllTeamMembers(org, teamSlug);
               const currentMemberLogins = currentMembers.map(member => member.login.toLowerCase());
 
               console.log(`Current team has ${currentMembers.length} members`);
 
-              // Invite contributors who are not already team members
               let inviteCount = 0;
 
               for (const contributor of contributors) {
@@ -60,14 +55,12 @@ jobs:
                   continue;
                 }
                 
-                // Check if already a member (case-insensitive comparison)
                 if (currentMemberLogins.includes(githubUsername.toLowerCase())) {
                   console.log(`${githubUsername} is already a member of the team, skipping`);
                   continue;
                 }
                 
                 try {
-                  // Send the invitation
                   await octokit.teams.addOrUpdateMembershipForUserInOrg({
                     org,
                     team_slug: teamSlug,
@@ -89,7 +82,6 @@ jobs:
             }
           }
 
-          // Helper function to get all team members (handles pagination)
           async function getAllTeamMembers(org, teamSlug) {
             try {
               const members = [];
@@ -120,7 +112,6 @@ jobs:
             }
           }
 
-          // Execute the main function
           run();
           EOF
 
