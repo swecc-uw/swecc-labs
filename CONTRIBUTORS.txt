@@ -1,4 +1,3 @@
-Elijah Melton
 Chendur Jayavelu
 Kevin Nguyen
 Amelia Li
@@ -8,8 +7,8 @@ Navneeth Dhamotharan
 Elise Poniman
 Rachit Bhitre
 Lucas Ng
-Sean Benoit
 Ansel Judd
 Andrew Rios
 Jimmy Liu
 Eli Haas
+Sean Benoit
