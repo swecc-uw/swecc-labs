@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'data/contributors.json'
+      - '.github/workflows/add-roles.yml'
 
 jobs:
   invite-to-team:
