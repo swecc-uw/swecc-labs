@@ -55,8 +55,13 @@
         "photo": "/assets/img/ansel.JPG"
     },
     {
+        "name": "Andrew Rios",
+        "github": "andrwwrios",
+        "photo": "/assets/img/AndrewR.jpeg"
+    },
+    {
         "name": "Jimmy Liu",
         "github": "JimmyALiu",
         "photo": "/assets/img/jimmy.png"
-    }
+    },
 ]

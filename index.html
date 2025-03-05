@@ -802,7 +802,7 @@
             }
         }
 
-        function createTeamMemberElement({ name, github, photo, isMentor, calendlyUrl }) {
+        function createTeamMemberElement({ name, github, photo, isMentor, apptUrl }) {
             const div = document.createElement('div');
             div.className = 'team-member';
 
@@ -815,9 +815,9 @@
                         <i class="fab fa-github"></i>
                         ${github}
                     </a>
-                    ${isMentor && calendlyUrl ? `
+                    ${isMentor && apptUrl ? `
                         <div class="mentor-links">
-                            <a href="${calendlyUrl}" target="_blank">
+                            <a href="${apptUrl}" target="_blank">
                                 <i class="far fa-calendar-alt"></i>
                                 Schedule 1:1
                             </a>
