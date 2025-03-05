@@ -10,4 +10,5 @@ Lucas Ng
 Ansel Judd
 Andrew Rios
 Jimmy Liu
+Eli Haas
 Sean Benoit

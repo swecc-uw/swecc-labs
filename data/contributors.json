@@ -63,5 +63,11 @@
         "name": "Jimmy Liu",
         "github": "JimmyALiu",
         "photo": "/assets/img/jimmy.png"
-    }
+    },
+    {
+        "name": "Eli Haas",
+        "github": "ephaas",
+        "photo": "/assets/img/Eli.jpeg"
+    },
+    
 ]
