@@ -90,7 +90,7 @@ repo: https://github.com/swecc-uw/swecc-email-scraper
 
 ### SWECC Email Sender
 
-A CLI email sending tool. Users can craft template and send email in bulk
+A CLI email sending tool. Users can craft and send template emails in bulk!
 
 Skills: Python, technical writing/documentation
 
