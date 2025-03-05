@@ -53,5 +53,10 @@
         "name": "Ansel Judd",
         "github": "Ansel122",
         "photo": "/assets/img/ansel.JPG"
+    },
+    {
+        "name": "Jimmy Liu",
+        "github": "JimmyALiu",
+        "photo": "/assets/img/jimmy.png"
     }
 ]
