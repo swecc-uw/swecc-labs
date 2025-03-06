@@ -1,0 +1,132 @@
+name: Invite Contributors to Team
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'data/contributors.json'
+      - '.github/workflows/add-roles.yml'
+
+jobs:
+  invite-to-team:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      
+      - name: Create invite script
+        run: |
+          cat > invite-script.js << 'EOF'
+          import { Octokit } from '@octokit/rest';
+          import fs from 'fs';
+
+          const octokit = new Octokit({
+            auth: process.env.GITHUB_TOKEN,
+          });
+
+          const org = 'swecc-uw';
+          const teamSlug = 'contributors';
+
+          async function run() {
+            try {
+              const contributorsData = fs.readFileSync('./data/contributors.json', 'utf8');
+              const contributors = JSON.parse(contributorsData);
+
+              console.log(`Found ${contributors.length} contributors in the JSON file`);
+
+              const currentMembers = await getAllTeamMembers(org, teamSlug);
+              const currentMemberLogins = currentMembers.map(member => member.login.toLowerCase());
+
+              console.log(`Current team has ${currentMembers.length} members`);
+
+              let inviteCount = 0;
+
+              for (const contributor of contributors) {
+                const githubUsername = contributor.github;
+                
+                if (!githubUsername) {
+                  console.log(`Skipping contributor ${contributor.name} - no GitHub username specified`);
+                  continue;
+                }
+                
+                if (currentMemberLogins.includes(githubUsername.toLowerCase())) {
+                  console.log(`${githubUsername} is already a member of the team, skipping`);
+                  continue;
+                }
+                
+                try {
+                  await octokit.teams.addOrUpdateMembershipForUserInOrg({
+                    org,
+                    team_slug: teamSlug,
+                    username: githubUsername,
+                    role: 'member'
+                  });
+
+                  console.log(`✅ Invited ${githubUsername} (${contributor.name}) to team`);
+                  inviteCount++;
+                } catch (error) {
+                  console.error(`❌ Failed to invite ${githubUsername}: ${error.message}`);
+                }
+              }
+
+              console.log(`Successfully invited ${inviteCount} new contributors to the team`);
+            } catch (error) {
+              console.error(`Action failed: ${error.message}`);
+              process.exit(1);
+            }
+          }
+
+          async function getAllTeamMembers(org, teamSlug) {
+            try {
+              const members = [];
+              let page = 1;
+              let hasMorePages = true;
+
+              while (hasMorePages) {
+                const response = await octokit.teams.listMembersInOrg({
+                  org,
+                  team_slug: teamSlug,
+                  per_page: 100,
+                  page
+                });
+
+                members.push(...response.data);
+
+                if (response.data.length < 100) {
+                  hasMorePages = false;
+                } else {
+                  page++;
+                }
+              }
+
+              return members;
+            } catch (error) {
+              console.error(`Failed to fetch team members: ${error.message}`);
+              return [];
+            }
+          }
+
+          run();
+          EOF
+
+      - name: Install dependencies
+        run: npm install @octokit/rest
+
+      - name: Create package.json
+        run: |
+          echo '{
+            "name": "team-inviter",
+            "version": "1.0.0",
+            "type": "module"
+          }' > package.json
+
+      - name: Run invitation script
+        env:
+          GITHUB_TOKEN: ${{ secrets.ADMIN_TOKEN }}
+        run: node invite-script.js
