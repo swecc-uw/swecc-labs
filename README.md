@@ -88,6 +88,22 @@ Skills: HTML/CSS/JS, technical writing/documentation, Abusing the GitHub API
 
 repo: https://github.com/swecc-uw/swecc-email-scraper
 
+### SWECC Email Sender
+
+A CLI email sending tool. Users can craft and send template emails in bulk!
+
+Skills: Python, technical writing/documentation
+
+repo: https://github.com/swecc-uw/swecc-email-sender
+
+### SWECC Chronos
+
+A lightweight metric collection tool for any Docker cluster. This project aims to provide a simple and efficient way to gather and visualize metrics from Docker containers, helping developers monitor and optimize their applications.
+
+Skills: Docker, FastAPI, technical writing/documentation
+
+repo: https://github.com/swecc-uw/swecc-chronos
+
 ### Suggest a project
 
 Have a great idea for a piece of open source software? Let us know!

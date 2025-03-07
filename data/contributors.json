@@ -53,5 +53,35 @@
         "name": "Tanvee Deshpande",
         "github": "TanveeDesh",
         "photo": "/assets/img/tanvee.jpg"
+    },
+    {
+        "name": "Ansel Judd",
+        "github": "Ansel122",
+        "photo": "/assets/img/ansel.JPG"
+    },
+    {
+        "name": "Andrew Rios",
+        "github": "andrwwrios",
+        "photo": "/assets/img/AndrewR.jpeg"
+    },
+    {
+        "name": "Jimmy Liu",
+        "github": "JimmyALiu",
+        "photo": "/assets/img/jimmy.png"
+    },
+    {
+        "name": "Eli Haas",
+        "github": "ephaas",
+        "photo": "/assets/img/Eli.jpeg"
+    },
+    {
+        "name": "Mark Han",
+        "github": "markhan0805",
+        "photo": "/assets/img/Mark.jpg"
+    },
+    {
+        "name": "Rina Yuan",
+        "github": "rinay06",
+        "photo": "/assets/img/Rina.JPG"
     }
 ]
