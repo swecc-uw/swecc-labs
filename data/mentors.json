@@ -22,5 +22,11 @@
         "github": "kipiiler",
         "photo": "/assets/img/hoang.jpg",
         "apptUrl": "https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1Q4HqQsylykM2v_XbZo6D3zgZzrW9oTo2UHm38ZUva8j2uh8gZ3VHvuFeHEs3YDeN3fuYCSr3f"
+    },
+    {
+        "name": "Dylan Song",
+        "github": "dylans0ng",
+        "photo": "/assets/img/dylan.png",
+        "apptUrl": "https://calendar.app.google/byHJVE243WP1Di3EA"
     }
 ]
