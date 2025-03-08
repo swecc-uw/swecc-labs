@@ -68,5 +68,10 @@
         "name": "Eli Haas",
         "github": "ephaas",
         "photo": "/assets/img/Eli.jpeg"
+    },
+    {
+        "name": "Daniel Lee",
+        "github": "DanielLee1004",
+        "photo": "/assets/img/daniel.png"
     }
 ]
