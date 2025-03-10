@@ -93,5 +93,10 @@
         "name": "Wendy Wang",
         "github": "hexiwang0627",
         "photo": "assets/img/wendy"
+    }, 
+    {
+        "name": "Maya Odenheim",
+        "github": "mayaoden",
+        "photo": "/assets/img/maya.png"
     }
 ]
