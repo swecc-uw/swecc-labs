@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SWECC Labs - Open Issues</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <!-- favicon -->
+  <link rel="icon" href="assets/sweccLOGO.png" type="image/x-icon">
+  <style>
+    :root {
+      --primary: #00924e;
+      --secondary: #023c19;
+      --text: #1f2937;
+      --light-bg: #e7e7e7;
+      --gradient: linear-gradient(120deg, #005d32, #02471e);
+      scroll-behavior: smooth;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    header {
+      background: var(--gradient);
+      color: rgba(255, 255, 255, 0.95);
+      padding: 6rem 0;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    header:after {
+      content: '';
+      position: absolute;
+      bottom: -50px;
+      left: 0;
+      right: 0;
+      height: 100px;
+      background: white;
+      transform: skewY(-3deg);
+      z-index: 1;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background:
+        radial-gradient(circle at 20% 50%, rgba(0, 146, 78, 0.4) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(2, 60, 25, 0.4) 0%, transparent 50%);
+      animation: pulseBackground 15s ease-in-out infinite;
+    }
+
+    @keyframes pulseBackground {
+
+      0%,
+      100% {
+        opacity: 0.7;
+      }
+
+      50% {
+        opacity: 0.3;
+      }
+    }
+
+    .hero-content {
+      max-width: 800px;
+      position: relative;
+      z-index: 2;
+    }
+
+    header h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(to right, #ffffff, #e0e0e0);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: slideIn 0.8s ease-out;
+    }
+
+    .hero-content p {
+      font-size: 1.4rem;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeIn 0.8s ease-out 0.3s forwards;
+    }
+
+    .projects-open-issues {
+      margin: 60px auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      max-width: 800px;
+    }
+
+    @media (max-width: 768px) {
+      .projects-open-issues {
+        margin: 80px 30px;
+      }
+    }
+
+    .project {
+      margin: 20px 0px;
+
+      --transition-ms: 0.3s;
+    }
+
+    .project--open .issue-content-wrapper {
+      grid-template-rows: 1fr;
+    }
+
+    .project--open .expandable-icon {
+      transform: rotate(90deg);
+    }
+
+    .project--open .issues {
+      border: 0.75px solid lightgray;
+    }
+    
+    .expandable-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 25px 20px;
+      user-select: none;
+      background-color: #0F8343;
+      border-radius: 12px;
+      color: white;
+      cursor: pointer;
+    }
+
+    .project-title {
+      font-weight: bold;
+    }
+
+    .expandable-icon {
+      transition: transform var(--transition-ms); 
+    }
+
+    .issue-content-wrapper {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.3s ease-out;
+    }
+
+    .project ul {
+      list-style-type: none;
+      margin: 15px 0px;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .project ul li {
+      padding: 10px 20px;
+      border-bottom: 0.75px solid lightgray;
+    }
+
+    .project ul li:last-child {
+      border-bottom: none;
+    }
+
+    .project ul li a {
+      text-decoration: none;
+      font-weight: 600;
+      color: black;
+    }
+
+    .project ul li a:hover {
+      text-decoration: underline;
+      color: var(--primary);
+    }
+
+    .project ul li p {
+      color: gray;
+      font-size: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      background: var(--gradient);
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 15px rgba(0, 93, 50, 0.3);
+      -webkit-backdrop-filter: blur(5px);
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: 0.5s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 93, 50, 0.4);
+    }
+
+    .btn:hover::before {
+      left: 100%;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(-30px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .btn-icon {
+      margin-left: 0.5rem;
+    }
+
+    .nav-bar {
+      background: var(--gradient);
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .nav-link {
+      color: rgba(255, 255, 255, 0.9);
+      text-decoration: none;
+      transition: all 0.2s ease;
+      padding: 0.5rem 0;
+      position: relative;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: white;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: white;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-link.active::after {
+      width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        gap: 1rem;
+      }
+    }
+
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background: var(--gradient);
+      z-index: 1001;
+      transition: width 0.1s ease;
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--gradient);
+      color: white;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      transition: all 0.3s ease;
+      transform: translateY(100px);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="scroll-progress"></div>
+
+  <nav class="nav-bar">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-logo">
+        <i class="fas fa-code-branch"></i> SWECC Labs
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="projects.html" class="nav-link">Projects</a>
+        <a href="https://forms.gle/T52aUc2faP71jNCWA" class="nav-link">Join</a>
+      </div>
+    </div>
+  </nav>
+
+  <header>
+    <div class="container">
+      <div class="hero-content">
+        <h1>Open Issues</h1>
+        <p>Explore open issues for our projects.</p>
+        <a href="#open-issues" class="btn">View Open Issues <i class="fas fa-arrow-down" style="margin-left: 8px;"></i></a>
+      </div>
+    </div>
+  </header>
+
+  <section id="open-issues" class="projects-open-issues">
+  </section>
+
+  <div class="back-to-top">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
+  <script>
+    // Scroll Progress Indicator
+    window.addEventListener('scroll', () => {
+      const scrollProgress = document.querySelector('.scroll-progress');
+      const scrollPx = document.documentElement.scrollTop;
+      const winHeightPx = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = `${(scrollPx / winHeightPx) * 100}%`;
+      scrollProgress.style.width = scrolled;
+    });
+
+    // Back to Top Button
+    const backToTop = document.querySelector('.back-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    });
+
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+    
+    // Fetch projects from projects.json
+    async function fetchProjects() {
+      try {
+        const response = await fetch("data/projects.json");
+        const projects = await response.json();
+
+        const container = document.getElementById("open-issues");
+        container.innerHTML = "";
+
+        for (const project of projects) {
+            const projectIssuesElement = document.createElement("div");
+            projectIssuesElement.className = "project";
+            projectIssuesElement.innerHTML = `
+              <div class="expandable-bar">
+                <span class="project-title">${project.name}</span>
+                <ion-icon class="expandable-icon" name="chevron-forward-outline"></ion-icon>
+              </div>
+              `;
+            container.appendChild(projectIssuesElement);
+
+            const repoName = extractRepoName(project.repo);
+            await fetchIssues(repoName, projectIssuesElement);
+        }
+      }
+      catch (error) {
+        console.log("Error loading projects.json: ", error);
+      }
+    }
+
+    // Filter "https://github.com/swecc-uw/swecc-email-scraper" to "swecc-email-scraper"
+    function extractRepoName (repoURL) {
+      return repoURL.replace("https://github.com/swecc-uw/", "").split("/")[0]; 
+    }
+
+    // Fetch issues for each project
+    async function fetchIssues( repoName, container ) {
+      const apiUrl = `https://api.github.com/repos/swecc-uw/${repoName}/issues`;
+
+      try {
+        const response = await fetch (apiUrl, {
+          headers: {
+            "Accept": "application/vnd.github+json",
+            "X-GitHub-Api-Version": "2022-11-28"
+          }
+        });
+
+        if (!response.ok) {
+            throw new Error(`GitHub API error: ${response.status} ${response.statusText}`);
+        }
+
+        const issues = (await response.json()).filter(issue => issue.state === "open" && issue.locked === false && !issue.pull_request);
+
+        if (issues.length === 0) {
+          container.innerHTML += "<p>No open issues.</p>";
+          return;
+        }
+
+        const issuesList = document.createElement("ul");
+        issuesList.className = "issues";
+        issues.forEach(issue => {
+            const issueItem = document.createElement("li");
+            let issueBody = issue.body ? issue.body : "No description available.";
+            issueBody = issueBody.length > 100 ? issueBody.substring(0, 100) + "..." : issueBody;
+
+            issueItem.innerHTML = `
+                <a href="${issue.html_url}" target="_blank">${issue.title}</a>
+                <p>${issueBody}</p>
+            `;
+            issuesList.appendChild(issueItem);
+        });
+        const contentwrap = document.createElement("div");
+        contentwrap.className = "issue-content-wrapper";
+        contentwrap.appendChild(issuesList);
+        container.appendChild(contentwrap);
+      }
+      catch (error) {
+        console.error("Error fetching issues: ", error);
+      }
+    }
+
+    document.body.addEventListener("click", (event) => {
+      const isExpandableTitle = event.target.closest(".expandable-bar")
+      const expandable = event.target.closest(".project");
+
+      if (!isExpandableTitle) {
+        return;
+      }
+
+      expandable.classList.toggle("project--open");
+    });
+
+    fetchProjects();
+
+  </script>
+
+  <!-- For using arrow icons -->
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>
