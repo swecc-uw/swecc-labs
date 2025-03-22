@@ -483,33 +483,45 @@
         });
 
         if (!response.ok) {
-            throw new Error(`GitHub API error: ${response.status} ${response.statusText}`);
+            container.innerHTML += `
+              <div class="issue-content-wrapper">
+                <ul class="issues">
+                  <li>
+                    <p style="color: red;">Something went wrong while fetching issues. (${response.status} ${response.statusText})</p>
+                  </li>
+                </ul>
+              </div>
+              `
+              ;
+            return;
         }
+        else {
+          const issues = (await response.json()).filter(issue => issue.state === "open" && issue.locked === false && !issue.pull_request);
 
-        const issues = (await response.json()).filter(issue => issue.state === "open" && issue.locked === false && !issue.pull_request);
+          if (issues.length === 0) {
+            container.innerHTML += "<p>No open issues.</p>";
+            return;
+          }
 
-        if (issues.length === 0) {
-          container.innerHTML += "<p>No open issues.</p>";
-          return;
+          const issuesList = document.createElement("ul");
+          issuesList.className = "issues";
+          issues.forEach(issue => {
+              const issueItem = document.createElement("li");
+              let issueBody = issue.body ? issue.body : "No description available.";
+              issueBody = issueBody.length > 100 ? issueBody.substring(0, 100) + "..." : issueBody;
+
+              issueItem.innerHTML = `
+                  <a href="${issue.html_url}" target="_blank">${issue.title}</a>
+                  <p>${issueBody}</p>
+              `;
+              issuesList.appendChild(issueItem);
+          });
+          const contentwrap = document.createElement("div");
+          contentwrap.className = "issue-content-wrapper";
+          contentwrap.appendChild(issuesList);
+          container.appendChild(contentwrap);
         }
-
-        const issuesList = document.createElement("ul");
-        issuesList.className = "issues";
-        issues.forEach(issue => {
-            const issueItem = document.createElement("li");
-            let issueBody = issue.body ? issue.body : "No description available.";
-            issueBody = issueBody.length > 100 ? issueBody.substring(0, 100) + "..." : issueBody;
-
-            issueItem.innerHTML = `
-                <a href="${issue.html_url}" target="_blank">${issue.title}</a>
-                <p>${issueBody}</p>
-            `;
-            issuesList.appendChild(issueItem);
-        });
-        const contentwrap = document.createElement("div");
-        contentwrap.className = "issue-content-wrapper";
-        contentwrap.appendChild(issuesList);
-        container.appendChild(contentwrap);
+        
       }
       catch (error) {
         console.error("Error fetching issues: ", error);
