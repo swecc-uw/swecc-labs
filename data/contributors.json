@@ -72,7 +72,7 @@
     {
         "name": "Eli Haas",
         "github": "ephaas",
-        "photo": "/assets/img/Eli.jpeg"
+        "photo": "/assets/img/Eli.jpg"
     },
     {
         "name": "Mark Han",
@@ -88,6 +88,26 @@
         "name": "Daniel Lee",
         "github": "DanielLee1004",
         "photo": "/assets/img/daniel.png"
+    },
+    {
+        "name": "Wendy Wang",
+        "github": "hexiwang0627",
+        "photo": "assets/img/wendy.jpg"
+    }, 
+    {
+        "name": "Maya Odenheim",
+        "github": "mayaoden",
+        "photo": "/assets/img/maya.png"
+    },
+    {
+        "name": "Akshaya Akkugari",
+        "github": "akshaya0A",
+        "photo": "/assets/img/akshaya.jpg"
+    },
+    {
+        "name": "Jaden Cutinha",
+        "github": "jadencutinha",
+        "photo": "/assets/img/jadenc.jpg"
     }
 
     {
