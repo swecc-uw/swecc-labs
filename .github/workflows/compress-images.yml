@@ -1,5 +1,8 @@
 name: Compress images
-on: pull_request
+on:
+  push:
+    branches:
+      - main
 jobs:
   build:
     name: calibreapp/webp-optimizer
