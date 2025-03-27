@@ -261,6 +261,16 @@
       margin-left: 0.5rem;
     }
 
+    .project-page-btn {
+      margin: 0px 0px 20px 0px;
+    }
+
+    @media (min-width: 768px) {
+      .project-page-btn {
+        margin: 0px 20px 0px 0px;
+      }
+    }
+
     .nav-bar {
       background: var(--gradient);
       padding: 1rem 0;
@@ -387,7 +397,7 @@
       <div class="hero-content">
         <h1>Open Issues</h1>
         <p>Explore open issues for our projects.</p>
-        <a href="#open-issues" class="btn">View Open Issues <i class="fas fa-arrow-down" style="margin-left: 8px;"></i></a>
+        <a href="#open-issues" class="btn project-page-btn">View Open Issues <i class="fas fa-arrow-down" style="margin-left: 8px;"></i></a>
       </div>
     </div>
   </header>
@@ -561,8 +571,7 @@
   </script>
 
   <!-- For using arrow icons -->
-  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <script src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 
 </html>
