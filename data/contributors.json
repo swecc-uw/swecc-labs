@@ -118,5 +118,10 @@
         "name": "Chloe Gao",
         "github": "chloejgao",
         "photo": "/assets/img/chloe.jpg"
+    },
+    {
+	"name": "Owen Vellegas"
+	"github": "ovellegas",
+	"photo": "/assets/img/owenv.jpg"
     }
 ]
