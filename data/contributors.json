@@ -123,5 +123,11 @@
 	"name": "Owen Vellegas",
 	"github": "ovellegas",
 	"photo": "/assets/img/owenv.jpg"
+    },
+
+    {
+    "name": "Vishal Sathambakkam",
+    "github": "vishksatham",
+    "photo": "/assets/img/vishal.jpg"
     }
 ]
