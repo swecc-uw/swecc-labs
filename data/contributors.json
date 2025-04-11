@@ -93,7 +93,7 @@
         "name": "Wendy Wang",
         "github": "hexiwang0627",
         "photo": "assets/img/wendy.jpg"
-    }, 
+    },
     {
         "name": "Maya Odenheim",
         "github": "mayaoden",
@@ -110,9 +110,9 @@
         "photo": "/assets/img/jadenc.jpg"
     },
     {
-    "name": "Dhruti Vadlamudi",
-    "github": "dhrutiv1129",
-    "photo": "/assets/img/dhruti.png"
+        "name": "Dhruti Vadlamudi",
+        "github": "dhrutiv1129",
+        "photo": "/assets/img/dhruti.png"
     },
     {
         "name": "Chloe Gao",
@@ -120,8 +120,13 @@
         "photo": "/assets/img/chloe.jpg"
     },
     {
-	"name": "Owen Vellegas",
-	"github": "ovellegas",
-	"photo": "/assets/img/owenv.jpg"
+        "name": "Owen Vellegas",
+        "github": "ovellegas",
+        "photo": "/assets/img/owenv.jpg"
+    },
+    {
+        "name": "Joe Sluis",
+        "github": "JoeS51",
+        "photo": "/assets/img/joe.jpeg"
     }
 ]
