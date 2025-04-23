@@ -130,6 +130,11 @@
         "photo": "/assets/img/joe.jpeg"
     },
     {
+        "name": "Micah Santos",
+        "github": "micahsantos51",
+        "photo": "/assets/img/micah/jpg"
+    },
+    {
         "name": "Tejasvi Konakanchi",
         "github": "Tejasvi-Konakanchi",
         "photo": "/assets/img/Tejasvi.JPEG"
