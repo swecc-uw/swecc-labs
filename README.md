@@ -104,6 +104,14 @@ Skills: Docker, FastAPI, technical writing/documentation
 
 repo: https://github.com/swecc-uw/swecc-chronos
 
+### SWECC Website
+
+Contribute to the growth of the SWECC website and help us build a better online experience.
+
+Skills: HTML/CSS/JS
+
+repo: https://github.com/swecc-uw/swecc-website
+
 ### Suggest a project
 
 Have a great idea for a piece of open source software? Let us know!
