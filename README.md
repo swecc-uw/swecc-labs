@@ -80,6 +80,22 @@ Skills: HTML/CSS/JS
 
 repo: https://github.com/swecc-uw/swecc-website
 
+#### SWECC Engagement
+
+A React single-page app template with built-in user authentication, layout, and routing. The foundation for SWECC's engagement tooling.
+
+Skills: React, TypeScript, Chakra UI, Supabase
+
+repo: https://github.com/swecc-uw/swecc-engagement
+
+#### SWECC Interview
+
+A React-based interview preparation app with a clean Chakra UI interface backed by Supabase.
+
+Skills: React, TypeScript, Chakra UI, Supabase
+
+repo: https://github.com/swecc-uw/swecc-interview
+
 ### Backend
 
 #### Course Scraper

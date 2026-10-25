@@ -13,5 +13,15 @@
     "name": "SWECC Website",
     "repo": "https://github.com/swecc-uw/swecc-website",
     "category": "Frontend"
+  },
+  {
+    "name": "SWECC Engagement",
+    "repo": "https://github.com/swecc-uw/swecc-engagement",
+    "category": "Frontend"
+  },
+  {
+    "name": "SWECC Interview",
+    "repo": "https://github.com/swecc-uw/swecc-interview",
+    "category": "Frontend"
   }
 ]
