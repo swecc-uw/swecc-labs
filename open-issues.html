@@ -126,6 +126,20 @@
       --transition-ms: 0.3s;
     }
 
+    .category-heading {
+      display: inline-block;
+      background: var(--gradient);
+      color: white;
+      padding: 0.5rem 1.2rem;
+      border-radius: 8px;
+      font-size: 1.3rem;
+      margin: 2.5rem 0 0.5rem 0;
+    }
+
+    .category-heading:first-of-type {
+      margin-top: 1rem;
+    }
+
     .project--open .issue-content-wrapper {
       grid-template-rows: 1fr;
     }
@@ -455,8 +469,22 @@
         const container = document.getElementById("open-issues");
         container.innerHTML = "";
 
-        const fetchIssuePromises = projects.map(project => {
-          const projectIssuesElement = document.createElement("div");
+        // Group projects by category, preserving JSON order
+        const grouped = new Map();
+        projects.forEach(project => {
+          const category = project.category || "Other";
+          if (!grouped.has(category)) grouped.set(category, []);
+          grouped.get(category).push(project);
+        });
+
+        for (const [category, categoryProjects] of grouped) {
+          const heading = document.createElement("h2");
+          heading.className = "category-heading";
+          heading.textContent = category;
+          container.appendChild(heading);
+
+          const fetchIssuePromises = categoryProjects.map(project => {
+            const projectIssuesElement = document.createElement("div");
             projectIssuesElement.className = "project";
             projectIssuesElement.innerHTML = `
               <div class="expandable-bar">
@@ -467,9 +495,10 @@
             container.appendChild(projectIssuesElement);
             const repoName = extractRepoName(project.repo);
             return fetchIssues(repoName, projectIssuesElement);
-        });
+          });
 
-        await Promise.all(fetchIssuePromises);
+          await Promise.all(fetchIssuePromises);
+        }
       }
       catch (error) {
         console.log("Error loading projects.json: ", error);
@@ -485,7 +514,7 @@
       }
     }
 
-    // Filter "https://github.com/swecc-uw/swecc-email-scraper" to "swecc-email-scraper"
+    // Filter "https://github.com/swecc-uw/<repo>" to "<repo>"
     function extractRepoName(repoURL) {
       return repoURL.replace("https://github.com/swecc-uw/", "").split("/")[0]; 
     }

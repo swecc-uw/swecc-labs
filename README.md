@@ -62,53 +62,33 @@ We look for contributors who are:
 
 ## Current Projects
 
-### Course Scraper
+### Frontend
 
-A tool to scrape a certain website's API *for personal usage*. Users can gather course metadata and prerequisites to be used programmatically elsewhere.
-
-Skills: Python, Automation, APIs, Web Scraping, Selenium
-
-repo: https://github.com/swecc-uw/swecc-course-scraper
-
-### Email Scraper
-
-Email data is readily [available](https://takeout.google.com/), but hard to work with. We are creating a framework for analyzing email data, with the goal in mind of automatically gathering recruiting statistics.
-
-Skills: Python, Data Analysis/Visualization, Parsing, Natural Language Processing
-
-repo: https://github.com/swecc-uw/swecc-email-scraper
-
-### SWECC Labs Landing Page
+#### SWECC Labs Landing Page
 
 This very repo accepts contributions! Help make SWECC Labs better by contributing!
 
 Skills: HTML/CSS/JS, technical writing/documentation, Abusing the GitHub API
 
-repo: https://github.com/swecc-uw/swecc-email-scraper
+repo: https://github.com/swecc-uw/swecc-labs
 
-### SWECC Email Sender
-
-A CLI email sending tool. Users can craft and send template emails in bulk!
-
-Skills: Python, technical writing/documentation
-
-repo: https://github.com/swecc-uw/swecc-email-sender
-
-### SWECC Chronos
-
-A lightweight metric collection tool for any Docker cluster. This project aims to provide a simple and efficient way to gather and visualize metrics from Docker containers, helping developers monitor and optimize their applications.
-
-Skills: Docker, FastAPI, technical writing/documentation
-
-repo: https://github.com/swecc-uw/swecc-chronos
-
-### SWECC Website
+#### SWECC Website
 
 Contribute to the growth of the SWECC website and help us build a better online experience.
 
 Skills: HTML/CSS/JS
 
 repo: https://github.com/swecc-uw/swecc-website
+
+### Backend
+
+#### Course Scraper
+
+A tool to scrape a certain website's API *for personal usage*. Users can gather course metadata and prerequisites to be used programmatically elsewhere.
+
+Skills: Python, Automation, APIs, Web Scraping, Selenium
+
+repo: https://github.com/swecc-uw/swecc-course-scraper
 
 ### Suggest a project
 
