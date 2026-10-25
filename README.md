@@ -106,6 +106,16 @@ Skills: Python, Automation, APIs, Web Scraping, Selenium
 
 repo: https://github.com/swecc-uw/swecc-course-scraper
 
+### Fullstack
+
+#### SWECC OSS Explorer
+
+A searchable browser for open issues across the ~100 most active open-source projects on GitHub, available as a Python CLI (`swecc-oss`) and a zero-build web app. Every search hits the GitHub API live — nothing is ever stored.
+
+Skills: Python, CLI development, GitHub REST API, HTML/CSS
+
+repo: https://github.com/swecc-uw/swecc-oss-explorer
+
 ### Suggest a project
 
 Have a great idea for a piece of open source software? Let us know!

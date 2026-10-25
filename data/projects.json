@@ -23,5 +23,10 @@
     "name": "SWECC Interview",
     "repo": "https://github.com/swecc-uw/swecc-interview",
     "category": "Frontend"
+  },
+  {
+    "name": "SWECC OSS Explorer",
+    "repo": "https://github.com/swecc-uw/swecc-oss-explorer",
+    "category": "Fullstack"
   }
 ]
