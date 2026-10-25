@@ -23,11 +23,9 @@ Traditional personal projects can be challenging to start and may not provide th
    ```json
    {
        "name": "Your Name",
-       "github": "your-github-username",
-       "photo": "path-to-your-photo"
+       "github": "your-github-username"
    }
    ```
-   - Add your photo to the `assets/img` folder and update the `data/contributors.json` file with the path to your photo
    - Add your name to the `CONTRIBUTORS.txt` file
    - Submit the PR and wait for it to be approved. As we approve PRs, we will also reach out to you on Discord.
 

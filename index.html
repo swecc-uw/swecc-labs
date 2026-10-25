@@ -453,6 +453,28 @@
 
         .mentor-badge {
             position: absolute;
+        .name-wall {
+            columns: 4;
+            column-gap: 3rem;
+            max-width: 55rem;
+            margin: 2rem auto 0;
+        }
+
+        .name-wall a {
+            display: block;
+            color: var(--text);
+            text-decoration: none;
+            padding: 0.35rem 0;
+            font-size: 0.95rem;
+            break-inside: avoid;
+            transition: color 0.15s ease;
+        }
+
+        .name-wall a:hover {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+
             top: 10px;
             right: 10px;
             background: var(--gradient);
@@ -624,8 +646,7 @@
                         <ul class="step-list">
                             <li><a href="https://github.com/swecc-uw/swecc-labs/fork">Fork</a> the repository</li>
                             <li>Add yourself to <a href="https://github.com/swecc-uw/swecc-labs/blob/main/CONTRIBUTORS.txt">CONTRIBUTORS.txt</a></li>
-                            <li>Upload a photo of yourself to <a href="https://github.com/swecc-uw/swecc-labs/tree/main/assets/img">assets/img</a></li>
-                            <li>Update <a href="https://github.com/swecc-uw/swecc-labs/blob/main/data/contributors.json">data/contributors.json</a> with your name, github, and photo</li>
+                            <li>Update <a href="https://github.com/swecc-uw/swecc-labs/blob/main/data/contributors.json">data/contributors.json</a> with your name and github</li>
                             <li>Submit a <a href="https://github.com/swecc-uw/swecc-labs/pulls">PR</a></li>
                         </ul>
                         <p>Feeling lost? Check out our <a href="/tutorial.html">step-by-step tutorial</a>.</p>
@@ -688,7 +709,7 @@
             </div>
 
             <h3 style="margin-top: 4rem;">Contributors</h3>
-            <div class="team-grid" id="contributors-grid">
+            <div class="name-wall" id="contributors-grid">
                 <!-- Will be populated by JavaScript -->
             </div>
         </div>
@@ -794,8 +815,11 @@
                 });
 
                 contributors.forEach(contributor => {
-                    const memberEl = createTeamMemberElement(contributor);
-                    contributorsGrid.appendChild(memberEl);
+                    const link = document.createElement('a');
+                    link.href = `https://github.com/${contributor.github}`;
+                    link.target = '_blank';
+                    link.textContent = contributor.name;
+                    contributorsGrid.appendChild(link);
                 });
             } catch (error) {
                 console.error('Error loading team data:', error);
