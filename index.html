@@ -399,13 +399,15 @@
         }
 
         .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 2rem;
             margin-top: 2rem;
         }
 
         .team-member {
+            width: 200px;
             background: white;
             border-radius: 12px;
             overflow: hidden;
@@ -451,8 +453,6 @@
             color: var(--primary);
         }
 
-        .mentor-badge {
-            position: absolute;
         .name-wall {
             columns: 4;
             column-gap: 3rem;
@@ -475,6 +475,8 @@
             text-decoration: underline;
         }
 
+        .mentor-badge {
+            position: absolute;
             top: 10px;
             right: 10px;
             background: var(--gradient);
@@ -486,28 +488,18 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
-        .mentor-links {
-            margin-top: 0.8rem;
-            padding-top: 0.8rem;
-            border-top: 1px solid var(--light-bg);
-        }
-
-        .mentor-links a {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.3rem;
-            color: var(--primary);
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-
-        .mentor-links a:hover {
-            text-decoration: underline;
-        }
-
         @media (max-width: 768px) {
             .team-grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 1.5rem;
+            }
+
+            .team-member {
+                width: 150px;
+            }
+
+            .name-wall {
+                columns: 2;
+                column-gap: 1.5rem;
             }
         }
 
@@ -826,7 +818,7 @@
             }
         }
 
-        function createTeamMemberElement({ name, github, photo, isMentor, apptUrl }) {
+        function createTeamMemberElement({ name, github, photo, isMentor }) {
             const div = document.createElement('div');
             div.className = 'team-member';
 
@@ -839,14 +831,6 @@
                         <i class="fab fa-github"></i>
                         ${github}
                     </a>
-                    ${isMentor && apptUrl ? `
-                        <div class="mentor-links">
-                            <a href="${apptUrl}" target="_blank">
-                                <i class="far fa-calendar-alt"></i>
-                                Schedule 1:1
-                            </a>
-                        </div>
-                    ` : ''}
                 </div>
             `;
 
