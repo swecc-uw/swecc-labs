@@ -190,13 +190,38 @@
     }
 
     .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
       gap: 2.5rem;
       margin-top: 2rem;
     }
 
+    .project-category {
+      margin-top: 3rem;
+    }
+
+    .project-category:first-of-type {
+      margin-top: 0;
+    }
+
+    .project-category h3 {
+      display: inline-block;
+      background: var(--gradient);
+      color: white;
+      padding: 0.6rem 1.4rem;
+      border-radius: 8px;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
+
+    .project-category p.category-desc {
+      color: #666;
+      margin-bottom: 1rem;
+    }
+
     .project-card {
+      width: 350px;
       background: white;
       border-radius: 12px;
       overflow: hidden;
@@ -205,7 +230,6 @@
       border: 1px solid rgba(0, 0, 0, 0.1);
       display: flex;
       flex-direction: column;
-      height: 100%;
     }
 
     .project-card:hover {
@@ -463,8 +487,8 @@
     }
 
     @media (max-width: 768px) {
-      .projects-grid {
-        grid-template-columns: 1fr;
+      .project-card {
+        width: 100%;
       }
 
       .nav-links {
@@ -548,139 +572,162 @@
   <section id="projects" class="projects-section">
     <div class="container">
       <h2>Current Projects</h2>
-      <div class="projects-grid">
-        <div class="project-card">
-          <div class="project-header">
-            <h3>Course Scraper</h3>
-          </div>
-          <div class="project-content">
-            <div class="project-description">
-              <p>A tool to scrape a certain website's API <em>for personal usage</em>. Users can gather course metadata
-                and prerequisites to be used programmatically elsewhere.</p>
-              <div class="tech-stack">
-                <span class="tech-badge"><i class="fab fa-python"></i> Python</span>
-                <span class="tech-badge"><i class="fas fa-robot"></i> Automation</span>
-                <span class="tech-badge"><i class="fas fa-plug"></i> APIs</span>
-                <span class="tech-badge"><i class="fas fa-spider"></i> Web Scraping</span>
-                <span class="tech-badge"><i class="fas fa-browser"></i> Selenium</span>
+      <div class="project-category">
+        <h3>Frontend</h3>
+        <p class="category-desc">User-facing websites and interfaces.</p>
+        <div class="projects-grid">
+          <div class="project-card">
+            <div class="project-header">
+              <h3>SWECC Labs Landing Page</h3>
+            </div>
+            <div class="project-content">
+              <div class="project-description">
+                <p>This very repo accepts contributions! Help make SWECC Labs better by contributing to our website and
+                  documentation.</p>
+                <div class="tech-stack">
+                  <span class="tech-badge"><i class="fab fa-html5"></i> HTML</span>
+                  <span class="tech-badge"><i class="fab fa-css3-alt"></i> CSS</span>
+                  <span class="tech-badge"><i class="fab fa-js"></i> JavaScript</span>
+                  <span class="tech-badge"><i class="fas fa-file-code"></i> Documentation</span>
+                  <span class="tech-badge"><i class="fab fa-github"></i> GitHub API</span>
+                </div>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/swecc-uw/swecc-labs" class="project-link" target="_blank" rel="noopener">
+                  <i class="fab fa-github"></i> View Repository
+                </a>
               </div>
             </div>
-            <div class="project-links">
-              <a href="https://github.com/swecc-uw/swecc-course-scraper" class="project-link" target="_blank"
-                rel="noopener">
-                <i class="fab fa-github"></i> View Repository
-              </a>
+          </div>
+
+          <div class="project-card">
+            <div class="project-header">
+              <h3>SWECC Website</h3>
+            </div>
+            <div class="project-content">
+              <div class="project-description">
+                <p>Contribute to the growth of the SWECC website and help us build a better online experience.</p>
+                <div class="tech-stack">
+                  <span class="tech-badge"><i class="fab fa-html5"></i> HTML</span>
+                  <span class="tech-badge"><i class="fab fa-css3-alt"></i> CSS</span>
+                  <span class="tech-badge"><i class="fab fa-js"></i> JavaScript</span>
+                </div>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/swecc-uw/swecc-website" class="project-link" target="_blank" rel="noopener">
+                  <i class="fab fa-github"></i> View Repository
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-header">
+              <h3>SWECC Engagement</h3>
+            </div>
+            <div class="project-content">
+              <div class="project-description">
+                <p>A React single-page app template with built-in user authentication, layout, and routing. The
+                  foundation for SWECC's engagement tooling and a great starting point for building full SPAs.</p>
+                <div class="tech-stack">
+                  <span class="tech-badge"><i class="fab fa-react"></i> React</span>
+                  <span class="tech-badge"><i class="fas fa-code"></i> TypeScript</span>
+                  <span class="tech-badge"><i class="fas fa-bolt"></i> Chakra UI</span>
+                  <span class="tech-badge"><i class="fas fa-database"></i> Supabase</span>
+                </div>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/swecc-uw/swecc-engagement" class="project-link" target="_blank"
+                  rel="noopener">
+                  <i class="fab fa-github"></i> View Repository
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-header">
+              <h3>SWECC Interview</h3>
+            </div>
+            <div class="project-content">
+              <div class="project-description">
+                <p>A React-based interview preparation app. Practice and track technical interview skills with a clean
+                  Chakra UI interface backed by Supabase.</p>
+                <div class="tech-stack">
+                  <span class="tech-badge"><i class="fab fa-react"></i> React</span>
+                  <span class="tech-badge"><i class="fas fa-code"></i> TypeScript</span>
+                  <span class="tech-badge"><i class="fas fa-bolt"></i> Chakra UI</span>
+                  <span class="tech-badge"><i class="fas fa-database"></i> Supabase</span>
+                </div>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/swecc-uw/swecc-interview" class="project-link" target="_blank"
+                  rel="noopener">
+                  <i class="fab fa-github"></i> View Repository
+                </a>
+              </div>
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="project-card">
-          <div class="project-header">
-            <h3>Email Scraper</h3>
-          </div>
-          <div class="project-content">
-            <div class="project-description">
-              <p>Email data is readily <a href="https://takeout.google.com/" target="_blank"
-                  rel="noopener">available</a>, but hard to work with. We are creating a framework for analyzing email
-                data, with the goal in mind of automatically gathering recruiting statistics.</p>
-              <div class="tech-stack">
-                <span class="tech-badge"><i class="fab fa-python"></i> Python</span>
-                <span class="tech-badge"><i class="fas fa-chart-bar"></i> Data Analysis</span>
-                <span class="tech-badge"><i class="fas fa-file-alt"></i> Parsing</span>
-                <span class="tech-badge"><i class="fas fa-language"></i> NLP</span>
-              </div>
+      <div class="project-category">
+        <h3>Backend</h3>
+        <p class="category-desc">Server-side logic, APIs, and data tooling.</p>
+        <div class="projects-grid">
+          <div class="project-card">
+            <div class="project-header">
+              <h3>Course Scraper</h3>
             </div>
-            <div class="project-links">
-              <a href="https://github.com/swecc-uw/swecc-email-scraper" class="project-link" target="_blank"
-                rel="noopener">
-                <i class="fab fa-github"></i> View Repository
-              </a>
+            <div class="project-content">
+              <div class="project-description">
+                <p>A tool to scrape a certain website's API <em>for personal usage</em>. Users can gather course metadata
+                  and prerequisites to be used programmatically elsewhere.</p>
+                <div class="tech-stack">
+                  <span class="tech-badge"><i class="fab fa-python"></i> Python</span>
+                  <span class="tech-badge"><i class="fas fa-robot"></i> Automation</span>
+                  <span class="tech-badge"><i class="fas fa-plug"></i> APIs</span>
+                  <span class="tech-badge"><i class="fas fa-spider"></i> Web Scraping</span>
+                  <span class="tech-badge"><i class="fas fa-browser"></i> Selenium</span>
+                </div>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/swecc-uw/swecc-course-scraper" class="project-link" target="_blank"
+                  rel="noopener">
+                  <i class="fab fa-github"></i> View Repository
+                </a>
+              </div>
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="project-card">
-          <div class="project-header">
-            <h3>SWECC Labs Landing Page</h3>
-          </div>
-          <div class="project-content">
-            <div class="project-description">
-              <p>This very repo accepts contributions! Help make SWECC Labs better by contributing to our website and
-                documentation.</p>
-              <div class="tech-stack">
-                <span class="tech-badge"><i class="fab fa-html5"></i> HTML</span>
-                <span class="tech-badge"><i class="fab fa-css3-alt"></i> CSS</span>
-                <span class="tech-badge"><i class="fab fa-js"></i> JavaScript</span>
-                <span class="tech-badge"><i class="fas fa-file-code"></i> Documentation</span>
-                <span class="tech-badge"><i class="fab fa-github"></i> GitHub API</span>
+      <div class="project-category">
+        <h3>Fullstack</h3>
+        <p class="category-desc">Projects spanning both client and tooling surfaces.</p>
+        <div class="projects-grid">
+          <div class="project-card">
+            <div class="project-header">
+              <h3>SWECC OSS Explorer</h3>
+            </div>
+            <div class="project-content">
+              <div class="project-description">
+                <p>A searchable browser for open issues across the ~100 most active open-source projects on GitHub,
+                  available as a Python CLI and a zero-build web app. Every search hits the GitHub API live — nothing
+                  is ever stored.</p>
+                <div class="tech-stack">
+                  <span class="tech-badge"><i class="fab fa-python"></i> Python</span>
+                  <span class="tech-badge"><i class="fas fa-terminal"></i> CLI</span>
+                  <span class="tech-badge"><i class="fab fa-html5"></i> HTML/CSS</span>
+                  <span class="tech-badge"><i class="fab fa-github"></i> GitHub API</span>
+                </div>
               </div>
-            </div>
-            <div class="project-links">
-              <a href="https://github.com/swecc-uw/swecc-labs" class="project-link" target="_blank" rel="noopener">
-                <i class="fab fa-github"></i> View Repository
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <div class="project-header">
-            <h3>SWECC Email Sender</h3>
-          </div>
-          <div class="project-content">
-            <div class="project-description">
-              <p>A CLI email sending tool. Users can craft and send templated emails in bulk.</p>
-              <div class="tech-stack">
-                <span class="tech-badge"><i class="fab fa-python"></i> Python</span>
-                <span class="tech-badge"><i class="fas fa-file-code"></i> Documentation</span>
+              <div class="project-links">
+                <a href="https://github.com/swecc-uw/swecc-oss-explorer" class="project-link" target="_blank"
+                  rel="noopener">
+                  <i class="fab fa-github"></i> View Repository
+                </a>
               </div>
-            </div>
-            <div class="project-links">
-              <a href="https://github.com/swecc-uw/swecc-email-sender" class="project-link" target="_blank" rel="noopener">
-                <i class="fab fa-github"></i> View Repository
-              </a>
-            </div>
-          </div>
-        </div>
-
-
-        <div class="project-card">
-          <div class="project-header">
-            <h3>SWECC Chronos</h3>
-          </div>
-          <div class="project-content">
-            <div class="project-description">
-              <p>A lightweight metric collection tool for any Docker cluster. This project aims to provide a simple and efficient way to gather and visualize metrics from Docker containers, helping developers monitor and optimize their applications.</p>
-              <div class="tech-stack">
-                <span class="tech-badge"><i class="fab fa-python"></i> Python</span>
-                <span class="tech-badge"><i class="fab fa-docker"></i> Docker</span>
-                <span class="tech-badge"><i class="fas fa-file-code"></i> Documentation</span>
-              </div>
-            </div>
-            <div class="project-links">
-              <a href="https://github.com/swecc-uw/swecc-chronos" class="project-link" target="_blank" rel="noopener">
-                <i class="fab fa-github"></i> View Repository
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="project-card">
-          <div class="project-header">
-            <h3>SWECC Website</h3>
-          </div>
-          <div class="project-content">
-            <div class="project-description">
-              <p>Contribute to the growth of the SWECC website and help us build a better online experience.</p>
-              <div class="tech-stack">
-                <span class="tech-badge"><i class="fab fa-html5"></i> HTML</span>
-                <span class="tech-badge"><i class="fab fa-css3-alt"></i> CSS</span>
-                <span class="tech-badge"><i class="fab fa-js"></i> JavaScript</span>
-              </div>
-            </div>
-            <div class="project-links">
-              <a href="https://github.com/swecc-uw/swecc-website" class="project-link" target="_blank" rel="noopener">
-                <i class="fab fa-github"></i> View Repository
-              </a>
             </div>
           </div>
         </div>

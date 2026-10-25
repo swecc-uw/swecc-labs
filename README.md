@@ -23,11 +23,9 @@ Traditional personal projects can be challenging to start and may not provide th
    ```json
    {
        "name": "Your Name",
-       "github": "your-github-username",
-       "photo": "path-to-your-photo"
+       "github": "your-github-username"
    }
    ```
-   - Add your photo to the `assets/img` folder and update the `data/contributors.json` file with the path to your photo
    - Add your name to the `CONTRIBUTORS.txt` file
    - Submit the PR and wait for it to be approved. As we approve PRs, we will also reach out to you on Discord.
 
@@ -64,7 +62,43 @@ We look for contributors who are:
 
 ## Current Projects
 
-### Course Scraper
+### Frontend
+
+#### SWECC Labs Landing Page
+
+This very repo accepts contributions! Help make SWECC Labs better by contributing!
+
+Skills: HTML/CSS/JS, technical writing/documentation, Abusing the GitHub API
+
+repo: https://github.com/swecc-uw/swecc-labs
+
+#### SWECC Website
+
+Contribute to the growth of the SWECC website and help us build a better online experience.
+
+Skills: HTML/CSS/JS
+
+repo: https://github.com/swecc-uw/swecc-website
+
+#### SWECC Engagement
+
+A React single-page app template with built-in user authentication, layout, and routing. The foundation for SWECC's engagement tooling.
+
+Skills: React, TypeScript, Chakra UI, Supabase
+
+repo: https://github.com/swecc-uw/swecc-engagement
+
+#### SWECC Interview
+
+A React-based interview preparation app with a clean Chakra UI interface backed by Supabase.
+
+Skills: React, TypeScript, Chakra UI, Supabase
+
+repo: https://github.com/swecc-uw/swecc-interview
+
+### Backend
+
+#### Course Scraper
 
 A tool to scrape a certain website's API *for personal usage*. Users can gather course metadata and prerequisites to be used programmatically elsewhere.
 
@@ -72,45 +106,15 @@ Skills: Python, Automation, APIs, Web Scraping, Selenium
 
 repo: https://github.com/swecc-uw/swecc-course-scraper
 
-### Email Scraper
+### Fullstack
 
-Email data is readily [available](https://takeout.google.com/), but hard to work with. We are creating a framework for analyzing email data, with the goal in mind of automatically gathering recruiting statistics.
+#### SWECC OSS Explorer
 
-Skills: Python, Data Analysis/Visualization, Parsing, Natural Language Processing
+A searchable browser for open issues across the ~100 most active open-source projects on GitHub, available as a Python CLI (`swecc-oss`) and a zero-build web app. Every search hits the GitHub API live — nothing is ever stored.
 
-repo: https://github.com/swecc-uw/swecc-email-scraper
+Skills: Python, CLI development, GitHub REST API, HTML/CSS
 
-### SWECC Labs Landing Page
-
-This very repo accepts contributions! Help make SWECC Labs better by contributing!
-
-Skills: HTML/CSS/JS, technical writing/documentation, Abusing the GitHub API
-
-repo: https://github.com/swecc-uw/swecc-email-scraper
-
-### SWECC Email Sender
-
-A CLI email sending tool. Users can craft and send template emails in bulk!
-
-Skills: Python, technical writing/documentation
-
-repo: https://github.com/swecc-uw/swecc-email-sender
-
-### SWECC Chronos
-
-A lightweight metric collection tool for any Docker cluster. This project aims to provide a simple and efficient way to gather and visualize metrics from Docker containers, helping developers monitor and optimize their applications.
-
-Skills: Docker, FastAPI, technical writing/documentation
-
-repo: https://github.com/swecc-uw/swecc-chronos
-
-### SWECC Website
-
-Contribute to the growth of the SWECC website and help us build a better online experience.
-
-Skills: HTML/CSS/JS
-
-repo: https://github.com/swecc-uw/swecc-website
+repo: https://github.com/swecc-uw/swecc-oss-explorer
 
 ### Suggest a project
 

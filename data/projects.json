@@ -1,26 +1,32 @@
 [
   {
-    "name": "SWECC Email Scraper",
-    "repo": "https://github.com/swecc-uw/swecc-email-scraper"
-  },
-  {
     "name": "SWECC Course Scraper",
-    "repo": "https://github.com/swecc-uw/swecc-course-scraper"
+    "repo": "https://github.com/swecc-uw/swecc-course-scraper",
+    "category": "Backend"
   },
   {
     "name": "SWECC Labs Landing Page",
-    "repo": "https://github.com/swecc-uw/swecc-labs"
+    "repo": "https://github.com/swecc-uw/swecc-labs",
+    "category": "Frontend"
   },
   {
     "name": "SWECC Website",
-    "repo": "https://github.com/swecc-uw/swecc-website"
+    "repo": "https://github.com/swecc-uw/swecc-website",
+    "category": "Frontend"
   },
   {
-      "name": "SWECC Chronos",
-      "repo": "https://github.com/swecc-uw/swecc-chronos"
+    "name": "SWECC Engagement",
+    "repo": "https://github.com/swecc-uw/swecc-engagement",
+    "category": "Frontend"
   },
   {
-      "name": "SWECC Email Sender",
-      "repo": "https://github.com/swecc-uw/swecc-email-sender"
+    "name": "SWECC Interview",
+    "repo": "https://github.com/swecc-uw/swecc-interview",
+    "category": "Frontend"
+  },
+  {
+    "name": "SWECC OSS Explorer",
+    "repo": "https://github.com/swecc-uw/swecc-oss-explorer",
+    "category": "Fullstack"
   }
 ]
