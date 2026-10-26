@@ -1,0 +1,12 @@
+.git
+.github
+.vscode
+.wrangler
+.DS_Store
+.gitignore
+.assetsignore
+node_modules
+wrangler.jsonc
+check-images.py
+CONTRIBUTORS.txt
+README.md
