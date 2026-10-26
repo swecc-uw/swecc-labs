@@ -7,5 +7,12 @@
     "directory": "."
   },
   // Required for `wrangler preview` (PR preview builds); intentionally empty
-  "previews": {}
+  "previews": {},
+  "observability": {
+    "logs": {
+      "enabled": true,
+      "invocation_logs": true,
+      "persist": true
+    }
+  }
 }
