@@ -558,10 +558,16 @@
               let issueBody = issue.body ? issue.body : "No description available.";
               issueBody = issueBody.length > 100 ? issueBody.substring(0, 100) + "..." : issueBody;
 
-              issueItem.innerHTML = `
-                <a href="${issue.html_url}" target="_blank">${issue.title}</a>
-                <p>${issueBody}</p>
-              `;
+              // Issue titles and bodies are user-submitted, so insert them as text, never HTML
+              const issueLink = document.createElement("a");
+              issueLink.href = issue.html_url;
+              issueLink.target = "_blank";
+              issueLink.textContent = issue.title;
+
+              const issueDescription = document.createElement("p");
+              issueDescription.textContent = issueBody;
+
+              issueItem.append(issueLink, issueDescription);
               issuesList.appendChild(issueItem);
           });
           const contentwrap = document.createElement("div");
