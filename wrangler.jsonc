@@ -1,0 +1,11 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "swecc-labs",
+  "compatibility_date": "2025-10-01",
+  // Static site: serve the repo root as assets (see .assetsignore for exclusions)
+  "assets": {
+    "directory": "."
+  },
+  // Required for `wrangler preview` (PR preview builds); intentionally empty
+  "previews": {}
+}
