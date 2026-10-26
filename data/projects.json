@@ -51,7 +51,7 @@
     "name": "SWECC Course Scraper",
     "repo": "https://github.com/swecc-uw/swecc-course-scraper",
     "category": "Backend",
-    "description": "A tool to scrape a certain website's API for personal usage. Users can gather course metadata and prerequisites to be used programmatically elsewhere.",
+    "description": "A tool to scrape a certain website's API <em>for personal usage</em>. Users can gather course metadata and prerequisites to be used programmatically elsewhere.",
     "tech": [
       { "label": "Python", "icon": "fab fa-python" },
       { "label": "Automation", "icon": "fas fa-robot" },

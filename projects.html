@@ -721,7 +721,8 @@
       `;
 
       card.querySelector('.project-header h3').textContent = name;
-      card.querySelector('.project-description p').textContent = description || '';
+      // Descriptions may contain inline HTML (e.g. <em>); data/projects.json is repo-controlled
+      card.querySelector('.project-description p').innerHTML = description || '';
       card.querySelector('.project-link').href = repo;
 
       const techStack = card.querySelector('.tech-stack');
