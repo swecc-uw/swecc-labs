@@ -1,0 +1,106 @@
+name: Cloudflare Preview Logs
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  collect-logs:
+    # Fork PRs are skipped: this job uses secrets, and fork PRs don't get Cloudflare preview builds anyway
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    env:
+      CF_TOKEN: ${{ secrets.CF_API_TOKEN }}          # user-scoped token with Workers CI Read
+      CF_ACCOUNT: ${{ vars.CF_ACCOUNT_ID }}
+      CF_WORKER_TAG: ${{ vars.CF_WORKER_TAG }}       # Worker tag (not name): Settings > Builds > API token
+      DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}  # optional
+      COMMIT_SHA: ${{ github.event.pull_request.head.sha }}
+
+    steps:
+      # NOTE: no checkout on purpose. This workflow runs with pull_request_target,
+      # so it must never check out or execute code from the PR.
+
+      - name: Wait for Cloudflare preview build
+        id: collect
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          api="https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT/builds"
+          auth=(-H "Authorization: Bearer $CF_TOKEN")
+
+          for i in {1..90}; do
+            response=$(curl -fsS --retry 3 "${auth[@]}" "$api/workers/$CF_WORKER_TAG/builds")
+            jq -e '.success == true' <<< "$response" >/dev/null
+
+            build=$(jq -c --arg sha "$COMMIT_SHA" \
+              '([.result[] | select(.build_trigger_metadata.commit_hash == $sha)] | first) // empty' \
+              <<< "$response")
+
+            if [[ -n "$build" ]]; then
+              uuid=$(jq -r '.build_uuid' <<< "$build")
+              status=$(jq -r '.status' <<< "$build")
+              outcome=$(jq -r '.build_outcome // empty' <<< "$build")
+              echo "Cloudflare build: $status / ${outcome:-pending}"
+
+              if [[ "$status" == "stopped" ]]; then
+                if [[ "$outcome" == "fail" ]]; then
+                  : > cloudflare-preview.log
+                  cursor=""
+                  for p in {1..50}; do
+                    logs=$(curl -fsS --retry 3 "${auth[@]}" \
+                      "$api/builds/$uuid/logs${cursor:+?cursor=$cursor}")
+                    jq -r '.result.lines[]? | .[1]' <<< "$logs" >> cloudflare-preview.log
+                    cursor=$(jq -r '.result.cursor // empty' <<< "$logs")
+                    [[ -z "$cursor" || "$(jq '.result.lines | length' <<< "$logs")" == 0 ]] && break
+                  done
+                  echo "failed=true" >> "$GITHUB_OUTPUT"
+                fi
+                exit 0
+              fi
+            fi
+
+            sleep 10
+          done
+
+          echo "Timed out waiting for Cloudflare build"
+          exit 1
+
+      - name: Save failed build logs
+        if: steps.collect.outputs.failed == 'true'
+        id: upload
+        uses: actions/upload-artifact@v7
+        with:
+          name: cloudflare-preview-logs
+          path: cloudflare-preview.log
+          retention-days: 30
+
+      - name: Comment on PR
+        if: steps.collect.outputs.failed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}   # needed: there is no git checkout for gh to infer the repo from
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          LOG_URL: ${{ steps.upload.outputs.artifact-url }}
+        run: |
+          gh pr comment "$PR_NUMBER" \
+            --body "Cloudflare preview build failed for \`${COMMIT_SHA:0:8}\`. [Download build logs]($LOG_URL)"
+
+      - name: Send logs to Discord
+        if: steps.collect.outputs.failed == 'true' && env.DISCORD_WEBHOOK != ''
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+        run: |
+          curl -fsS \
+            -F "payload_json={\"content\":\"❌ Cloudflare preview failed: $PR_URL (${COMMIT_SHA:0:8})\"}" \
+            -F "file=@cloudflare-preview.log" "$DISCORD_WEBHOOK"
+
+      - name: Mark failed preview
+        if: steps.collect.outputs.failed == 'true'
+        run: exit 1
