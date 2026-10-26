@@ -1,32 +1,75 @@
 [
   {
-    "name": "SWECC Course Scraper",
-    "repo": "https://github.com/swecc-uw/swecc-course-scraper",
-    "category": "Backend"
-  },
-  {
     "name": "SWECC Labs Landing Page",
     "repo": "https://github.com/swecc-uw/swecc-labs",
-    "category": "Frontend"
+    "category": "Frontend",
+    "description": "This very repo accepts contributions! Help make SWECC Labs better by contributing to our website and documentation.",
+    "tech": [
+      { "label": "HTML", "icon": "fab fa-html5" },
+      { "label": "CSS", "icon": "fab fa-css3-alt" },
+      { "label": "JavaScript", "icon": "fab fa-js" },
+      { "label": "Documentation", "icon": "fas fa-file-code" },
+      { "label": "GitHub API", "icon": "fab fa-github" }
+    ]
   },
   {
     "name": "SWECC Website",
     "repo": "https://github.com/swecc-uw/swecc-website",
-    "category": "Frontend"
+    "category": "Frontend",
+    "description": "Contribute to the growth of the SWECC website and help us build a better online experience.",
+    "tech": [
+      { "label": "HTML", "icon": "fab fa-html5" },
+      { "label": "CSS", "icon": "fab fa-css3-alt" },
+      { "label": "JavaScript", "icon": "fab fa-js" }
+    ]
   },
   {
     "name": "SWECC Engagement",
     "repo": "https://github.com/swecc-uw/swecc-engagement",
-    "category": "Frontend"
+    "category": "Frontend",
+    "description": "A React single-page app template with built-in user authentication, layout, and routing. The foundation for SWECC's engagement tooling and a great starting point for building full SPAs.",
+    "tech": [
+      { "label": "React", "icon": "fab fa-react" },
+      { "label": "TypeScript", "icon": "fas fa-code" },
+      { "label": "Chakra UI", "icon": "fas fa-bolt" },
+      { "label": "Supabase", "icon": "fas fa-database" }
+    ]
   },
   {
     "name": "SWECC Interview",
     "repo": "https://github.com/swecc-uw/swecc-interview",
-    "category": "Frontend"
+    "category": "Frontend",
+    "description": "A React-based interview preparation app. Practice and track technical interview skills with a clean Chakra UI interface backed by Supabase.",
+    "tech": [
+      { "label": "React", "icon": "fab fa-react" },
+      { "label": "TypeScript", "icon": "fas fa-code" },
+      { "label": "Chakra UI", "icon": "fas fa-bolt" },
+      { "label": "Supabase", "icon": "fas fa-database" }
+    ]
+  },
+  {
+    "name": "SWECC Course Scraper",
+    "repo": "https://github.com/swecc-uw/swecc-course-scraper",
+    "category": "Backend",
+    "description": "A tool to scrape a certain website's API <em>for personal usage</em>. Users can gather course metadata and prerequisites to be used programmatically elsewhere.",
+    "tech": [
+      { "label": "Python", "icon": "fab fa-python" },
+      { "label": "Automation", "icon": "fas fa-robot" },
+      { "label": "APIs", "icon": "fas fa-plug" },
+      { "label": "Web Scraping", "icon": "fas fa-spider" },
+      { "label": "Selenium", "icon": "fas fa-browser" }
+    ]
   },
   {
     "name": "SWECC OSS Explorer",
     "repo": "https://github.com/swecc-uw/swecc-oss-explorer",
-    "category": "Fullstack"
+    "category": "Fullstack",
+    "description": "A searchable browser for open issues across the ~100 most active open-source projects on GitHub, available as a Python CLI and a zero-build web app. Every search hits the GitHub API live — nothing is ever stored.",
+    "tech": [
+      { "label": "Python", "icon": "fab fa-python" },
+      { "label": "CLI", "icon": "fas fa-terminal" },
+      { "label": "HTML/CSS", "icon": "fab fa-html5" },
+      { "label": "GitHub API", "icon": "fab fa-github" }
+    ]
   }
 ]

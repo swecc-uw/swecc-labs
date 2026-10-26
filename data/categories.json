@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Frontend",
+    "description": "User-facing websites and interfaces."
+  },
+  {
+    "name": "Backend",
+    "description": "Server-side logic, APIs, and data tooling."
+  },
+  {
+    "name": "Fullstack",
+    "description": "Projects spanning both client and tooling surfaces."
+  }
+]
