@@ -1,0 +1,99 @@
+
+name: Cloudflare Preview Logs
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  collect-logs:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    env:
+      CF_TOKEN: ${{ secrets.CF_API_TOKEN }}
+      CF_ACCOUNT: ${{ vars.CF_ACCOUNT_ID }}
+      CF_PROJECT: ${{ vars.CF_PAGES_PROJECT }}
+      COMMIT_SHA: ${{ github.event.pull_request.head.sha }}
+
+    steps:
+      - name: Wait for Cloudflare preview build
+        id: collect
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          api="https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT/pages/projects/$CF_PROJECT/deployments"
+
+          for i in {1..90}; do
+            response=$(curl -fsS --retry 3 \
+              -H "Authorization: Bearer $CF_TOKEN" \
+              "$api?env=preview&per_page=100")
+
+            jq -e '.success == true' <<< "$response" >/dev/null
+
+            deployment=$(jq -c --arg sha "$COMMIT_SHA" \
+              '([.result[] | select(.deployment_trigger.metadata.commit_hash == $sha)] | first) // empty' \
+              <<< "$response")
+
+            if [[ -n "$deployment" ]]; then
+              id=$(jq -r '.id' <<< "$deployment")
+              status=$(jq -r '.latest_stage.status' <<< "$deployment")
+              stage=$(jq -r '.latest_stage.name' <<< "$deployment")
+
+              echo "Cloudflare: $stage / $status"
+
+              if [[ "$status" == "failure" ]]; then
+                logs=$(curl -fsS --retry 3 \
+                  -H "Authorization: Bearer $CF_TOKEN" \
+                  "$api/$id/history/logs")
+
+                jq -e '.success == true' <<< "$logs" >/dev/null
+                jq -r '.result.data[]?.line' <<< "$logs" > cloudflare-preview.log
+
+                echo "failed=true" >> "$GITHUB_OUTPUT"
+                exit 0
+              fi
+
+              if [[ "$stage" == "deploy" && "$status" == "success" ]]; then
+                exit 0
+              fi
+
+              if [[ "$status" == "canceled" || "$status" == "skipped" ]]; then
+                exit 0
+              fi
+            fi
+
+            sleep 10
+          done
+
+          echo "Timed out waiting for Cloudflare deployment"
+          exit 1
+
+      - name: Save failed build logs
+        if: steps.collect.outputs.failed == 'true'
+        id: upload
+        uses: actions/upload-artifact@v7
+        with:
+          name: cloudflare-preview-logs
+          path: cloudflare-preview.log
+          retention-days: 30
+
+      - name: Comment on PR
+        if: steps.collect.outputs.failed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          LOG_URL: ${{ steps.upload.outputs.artifact-url }}
+        run: |
+          gh pr comment "$PR_NUMBER" \
+            --body "Cloudflare preview build failed for \`${COMMIT_SHA:0:8}\`. [Download build logs]($LOG_URL)"
+
+      - name: Mark failed preview
+        if: steps.collect.outputs.failed == 'true'
+        run: exit 1
